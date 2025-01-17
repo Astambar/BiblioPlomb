@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using BiblioPlomb.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<BiblioPlombContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BiblioPlombContext") ?? throw new InvalidOperationException("Connection string 'BiblioPlombContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
