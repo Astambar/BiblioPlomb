@@ -6,6 +6,6 @@
         public string Nom { get; set; }
 
         //Clé étrangère
-        public int LivreId { get; set; }
+        //public int LivreId { get; set; }
     }
 }
