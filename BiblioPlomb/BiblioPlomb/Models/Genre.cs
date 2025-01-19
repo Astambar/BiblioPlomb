@@ -6,7 +6,7 @@
 
         public string Nom { get; set; } = string.Empty;
 
-        // Navigation pour les livres
+        // gestion  pour les livres
         public ICollection<Livre> Livres { get; set; } = new List<Livre>();
     }
 }

@@ -12,7 +12,7 @@ namespace Biblioplomb.Models
         public string Nom { get; set; } = string.Empty;
         public string Prenom { get; set; } = string.Empty;
 
-        // Propriété de navigation vers Livre avec jointure AuteurLivre
+        // jointure AuteurLivre
         public ICollection<AuteurLivre> AuteurLivres { get; set; } = new List<AuteurLivre>();
     }
 }
