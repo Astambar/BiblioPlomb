@@ -2,9 +2,7 @@
 {
     public class GenreDTO
     {
-        public int Id { get; set; }
-        public string Nom { get; set; }
-
+        public string Nom { get; set; } = string.Empty;
         //Clé étrangère
         //public int LivreId { get; set; }
     }
