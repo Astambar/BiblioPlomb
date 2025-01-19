@@ -4,13 +4,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\BiblioPlomb.25ffvfmcpj.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"25ffvfmcpj"},{"Name":"integrity","Value":"sha256-ZnVwPRlINXl9R47TlXQDN43EZPCzpSVbCiXsoY\u002Bad\u002BI="},{"Name":"label","Value":"_content/BiblioPlomb/BiblioPlomb.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1129"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022ZnVwPRlINXl9R47TlXQDN43EZPCzpSVbCiXsoY\u002Bad\u002BI=\u0022"},{"Name":"Last-Modified","Value":"Sun, 19 Jan 2025 18:21:30 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1129"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022ZnVwPRlINXl9R47TlXQDN43EZPCzpSVbCiXsoY\u002Bad\u002BI=\u0022"},{"Name":"Last-Modified","Value":"Sun, 19 Jan 2025 20:47:14 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/BiblioPlomb/BiblioPlomb.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\BiblioPlomb.25ffvfmcpj.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ZnVwPRlINXl9R47TlXQDN43EZPCzpSVbCiXsoY\u002Bad\u002BI="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1129"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022ZnVwPRlINXl9R47TlXQDN43EZPCzpSVbCiXsoY\u002Bad\u002BI=\u0022"},{"Name":"Last-Modified","Value":"Sun, 19 Jan 2025 18:21:30 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1129"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022ZnVwPRlINXl9R47TlXQDN43EZPCzpSVbCiXsoY\u002Bad\u002BI=\u0022"},{"Name":"Last-Modified","Value":"Sun, 19 Jan 2025 20:47:14 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/BiblioPlomb/css/site.b9sayid5wm.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>

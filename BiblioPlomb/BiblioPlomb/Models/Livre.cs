@@ -1,4 +1,6 @@
-﻿namespace Biblioplomb.Models
+﻿using BiblioPlomb.Models;
+
+namespace Biblioplomb.Models
 
 {
     public enum EtatLivre
@@ -15,13 +17,16 @@
         public bool Dispo { get; set; }
         public EtatLivre Etat { get; set; } = EtatLivre.Bon; //par défaut quand on crée un livre
         public long ISBN { get; set; }
+
+        // clé étrangère pour Genre
         public int GenreId { get; set; }
         public int AuteurId { get; set; }
 
         // chercher vers Genre
-        public Genre Genre { get; set; } = default!;
+        public Genre Genre { get; set; }
 
         // cherche vers Auteur avec jointure AuteurLivre
         public ICollection<AuteurLivre> AuteurLivres { get; set; } = new List<AuteurLivre>();
+        //public ICollection<LivreGenre> LivreGenres { get; set; }
     }
 }
