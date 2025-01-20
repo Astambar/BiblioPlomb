@@ -27,6 +27,43 @@
   },
   {
     "ContainingType": "BiblioPlomb.Controllers.RoleApiController",
+    "Method": "UpdateRole",
+    "RelativePath": "api/RoleApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.RoleApiController",
+    "Method": "DeleteRole",
+    "RelativePath": "api/RoleApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.RoleApiController",
     "Method": "GetRoleById",
     "RelativePath": "api/RoleApi/id/{id}",
     "HttpMethod": "GET",

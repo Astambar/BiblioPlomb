@@ -10,5 +10,7 @@ namespace BiblioPlomb.Services
         Task<IEnumerable<Role>> GetAllRolesAsync();
         Task<IEnumerable<Role>> SearchRolesByTypeAsync(string searchPattern);
         Task<bool> RoleExistsAsync(string type);
+        Task<Role?> UpdateRoleAsync(int id, string newType);
+        Task<bool> DeleteRoleAsync(int id);
     }
 }

@@ -64,5 +64,36 @@ namespace BiblioPlomb.Controllers
             var roles = await _roleService.SearchRolesByTypeAsync(query);
             return Ok(roles);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateRole(int id, [FromBody] string type)
+        {
+            try
+            {
+                var updatedRole = await _roleService.UpdateRoleAsync(id, type);
+                if (updatedRole == null)
+                    return NotFound($"Le rôle avec l'ID {id} n'existe pas.");
+
+                return Ok(updatedRole);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRole(int id)
+        {
+            var success = await _roleService.DeleteRoleAsync(id);
+            if (!success)
+                return NotFound($"Le rôle avec l'ID {id} n'existe pas.");
+
+            return NoContent();
+        }
     }
 }

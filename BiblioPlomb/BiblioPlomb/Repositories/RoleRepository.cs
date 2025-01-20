@@ -45,6 +45,25 @@ namespace BiblioPlomb.Repositories
             return role;
         }
 
+        public async Task<Role?> UpdateAsync(Role role)
+        {
+            var existingRole = await GetByIdAsync(role.Id);
+            if (existingRole == null) return null;
+
+            existingRole.Type = role.Type;
+            _context.Roles.Update(existingRole);
+            return existingRole;
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var role = await GetByIdAsync(id);
+            if (role == null) return false;
+
+            _context.Roles.Remove(role);
+            return true;
+        }
+
         public async Task<bool> ExistsByTypeAsync(string type)
         {
             return await _context.Roles

@@ -37,11 +37,38 @@
                     <td>@Html.DisplayFor(modelItem => item.Type)</td>
                     <td>
                         <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Détails</a>
+                        <button onclick="editRole(@item.Id, '@item.Type')" class="btn btn-warning btn-sm">Modifier</button>
+                        <button onclick="deleteRole(@item.Id)" class="btn btn-danger btn-sm">Supprimer</button>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+</div>
+
+<!-- Modal de modification -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Modifier le rôle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editRoleId" />
+                <div class="form-group">
+                    <label for="editRoleType">Type</label>
+                    <input type="text" class="form-control" id="editRoleType" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" onclick="updateRole()">Enregistrer</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
@@ -80,10 +107,64 @@
                     <td>${role.type}</td>
                     <td>
                         <a href="/Role/Details/${role.id}" class="btn btn-info btn-sm">Détails</a>
+                        <button onclick="editRole(${role.id}, '${role.type}')" class="btn btn-warning btn-sm">Modifier</button>
+                        <button onclick="deleteRole(${role.id})" class="btn btn-danger btn-sm">Supprimer</button>
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
+        }
+
+        function editRole(id, type) {
+            document.getElementById('editRoleId').value = id;
+            document.getElementById('editRoleType').value = type;
+            $('#editModal').modal('show');
+        }
+
+        async function updateRole() {
+            const id = document.getElementById('editRoleId').value;
+            const newType = document.getElementById('editRoleType').value;
+
+            try {
+                const response = await fetch(`/api/RoleApi/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newType)
+                });
+
+                if (!response.ok) {
+                    const error = await response.text();
+                    throw new Error(error);
+                }
+
+                $('#editModal').modal('hide');
+                window.location.reload();
+            } catch (error) {
+                alert('Erreur lors de la modification : ' + error.message);
+            }
+        }
+
+        async function deleteRole(id) {
+            if (!confirm('Êtes-vous sûr de vouloir supprimer ce rôle ?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/RoleApi/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (!response.ok) {
+                    const error = await response.text();
+                    throw new Error(error);
+                }
+
+                window.location.reload();
+            } catch (error) {
+                alert('Erreur lors de la suppression : ' + error.message);
+            }
         }
     </script>
 }
