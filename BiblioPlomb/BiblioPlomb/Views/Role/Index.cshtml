@@ -1,0 +1,89 @@
+@model IEnumerable<BiblioPlomb.Models.Role>
+
+@{
+    ViewData["Title"] = "Liste des rôles";
+}
+
+<h1>Liste des rôles</h1>
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <div class="input-group">
+            <input type="text" id="searchInput" class="form-control" placeholder="Rechercher un rôle...">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 text-right">
+        <a asp-action="Create" class="btn btn-primary">Créer un nouveau rôle</a>
+    </div>
+</div>
+
+<div id="rolesTableContainer">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                <th>@Html.DisplayNameFor(model => model.Type)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="rolesTableBody">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Type)</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Détails</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        let searchTimeout;
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            clearTimeout(searchTimeout);
+            const searchValue = e.target.value;
+
+            searchTimeout = setTimeout(() => {
+                performSearch(searchValue);
+            }, 300);
+        });
+
+        async function performSearch(query) {
+            try {
+                const response = await fetch(`/api/RoleApi/search?query=${encodeURIComponent(query)}`);
+                if (!response.ok) throw new Error('Erreur réseau');
+                
+                const roles = await response.json();
+                updateTable(roles);
+            } catch (error) {
+                console.error('Erreur lors de la recherche:', error);
+            }
+        }
+
+        function updateTable(roles) {
+            const tbody = document.getElementById('rolesTableBody');
+            tbody.innerHTML = '';
+
+            roles.forEach(role => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${role.id}</td>
+                    <td>${role.type}</td>
+                    <td>
+                        <a href="/Role/Details/${role.id}" class="btn btn-info btn-sm">Détails</a>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    </script>
+}

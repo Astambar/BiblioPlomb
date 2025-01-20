@@ -1,4 +1,4 @@
-﻿using BiblioPlomb.Models.BiblioPlomb.Models;
+using BiblioPlomb.Models;
 
 namespace BiblioPlomb.Models
 {

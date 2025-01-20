@@ -1,0 +1,9 @@
+Instructions pour mettre à jour Program.cs :
+
+1. Ajouter l'using suivant en haut du fichier :
+using BiblioPlomb.Repositories;
+
+2. Ajouter la ligne suivante juste après l'enregistrement du RoleService :
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+
+Cette modification doit être faite avant la ligne "var app = builder.Build();"

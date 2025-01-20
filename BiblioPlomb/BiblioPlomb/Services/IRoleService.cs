@@ -1,0 +1,14 @@
+using BiblioPlomb.Models;
+
+namespace BiblioPlomb.Services
+{
+    public interface IRoleService
+    {
+        Task<Role> CreateRoleAsync(string type);
+        Task<Role?> GetRoleByTypeAsync(string type);
+        Task<Role?> GetRoleByIdAsync(int Id);
+        Task<IEnumerable<Role>> GetAllRolesAsync();
+        Task<IEnumerable<Role>> SearchRolesByTypeAsync(string searchPattern);
+        Task<bool> RoleExistsAsync(string type);
+    }
+}

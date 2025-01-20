@@ -1,4 +1,4 @@
-﻿namespace BiblioPlomb.Models
+namespace BiblioPlomb.Models
 {
     public class Role
     {
