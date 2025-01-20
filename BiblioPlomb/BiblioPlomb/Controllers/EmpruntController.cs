@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using BiblioPlomb.Data;
 using BiblioPlomb.Models;
 
-namespace BiblioPlomb.Controllers
+namespace BiblioPlomb.Services
 {
-    public class EmpruntsController : Controller
+    public class EmpruntController : Controller
     {
         private readonly BiblioPlombContext _context;
 
-        public EmpruntsController(BiblioPlombContext context)
+        public EmpruntController(BiblioPlombContext context)
         {
             _context = context;
         }
@@ -50,8 +50,6 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Emprunts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,UserID,DateEmprunt,DateRetour")] Emprunt emprunt)
@@ -83,8 +81,6 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Emprunts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,UserID,DateEmprunt,DateRetour")] Emprunt emprunt)
@@ -156,3 +152,4 @@ namespace BiblioPlomb.Controllers
         }
     }
 }
+
