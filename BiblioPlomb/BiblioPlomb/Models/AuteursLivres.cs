@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Biblioplomb.Models;
+using BiblioPlomb.Models;
+using BiblioPlomb.Models;
 
-namespace Biblioplomb.Models
+namespace BiblioPlomb.Models
 {
     public class AuteurLivre
     {

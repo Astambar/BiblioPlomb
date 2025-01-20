@@ -1,19 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Collections.Generic;
-using BiblioPlomb.Models;
+﻿using BiblioPlomb.Models;
 
-namespace Biblioplomb.Models
+namespace BiblioPlomb.Models
 {
     public class Auteur
     {
         public int Id { get; set; }
         public string Nom { get; set; } = string.Empty;
-        public string Prenom { get; set; } = string.Empty;
 
-        // jointure AuteurLivre
+        // Ajoute la collection des livres de cet auteur
         public ICollection<AuteurLivre> AuteurLivres { get; set; } = new List<AuteurLivre>();
     }
 }
-

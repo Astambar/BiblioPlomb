@@ -1,6 +1,6 @@
 ﻿using BiblioPlomb.Db;
-using Biblioplomb.DTO;
-using Biblioplomb.Models;
+using BiblioPlomb.DTO;
+using BiblioPlomb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
@@ -25,45 +25,41 @@ namespace BiblioPlomb.Services
                 Titre = livreDTO.Titre,
                 Dispo = livreDTO.Dispo,
                 Etat = livreDTO.Etat,
-                GenreId = livreDTO.GenreId,
-                AuteurId = livreDTO.AuteurId
+                //GenreId = livreDTO.GenreId,
+                //AuteurId = livreDTO.AuteurId,
+                ISBN = livreDTO.ISBN
             };
 
             _db.Livres.Add(livre);
             await _db.SaveChangesAsync();
-
             return TypedResults.Created($"/livres/{livre.Id}", livre);
         }
 
-        // Récupérer  un livre par Id
+        // Récupérer un livre par Id
         public async Task<IResult> GetLivre(int id)
         {
             var livre = await _db.Livres
                 .Include(livre => livre.Genre)
-                .Include(livre => livre.Auteur)
                 .FirstOrDefaultAsync(livre => livre.Id == id);
 
             return livre == null ? TypedResults.NotFound() : TypedResults.Ok(livre);
         }
 
-        //recherche par titre du livre insensible a la casse (Entity Framework - EF.Functions.Like)
+        // Recherche par titre du livre insensible à la casse (Entity Framework - EF.Functions.Like)
         public async Task<IResult> LivreParTitre(string titre)
         {
             var livre = await _db.Livres
                 .Include(livre => livre.Genre)
-                .Include(livre => livre.Auteur)
                 .FirstOrDefaultAsync(livre => EF.Functions.Like(livre.Titre, $"%{titre}%"));
 
             return livre == null ? TypedResults.NotFound() : TypedResults.Ok(livre);
         }
-
 
         // Affiche tous les livres
         public async Task<IResult> GetAllLivres()
         {
             var livres = await _db.Livres
                 .Include(livre => livre.Genre)
-                .Include(livre => livre.Auteur)
                 .ToListAsync();
 
             return TypedResults.Ok(livres);
@@ -83,12 +79,13 @@ namespace BiblioPlomb.Services
             livre.Etat = livreDTO.Etat;
             livre.GenreId = livreDTO.GenreId;
             livre.AuteurId = livreDTO.AuteurId;
+            livre.ISBN = livreDTO.ISBN;
 
             await _db.SaveChangesAsync();
             return TypedResults.NoContent();
         }
 
-        // Supprimer un livre ( endommagé par exemple)
+        // Supprimer un livre (endommagé par exemple)
         public async Task<IResult> DeleteLivre(int id)
         {
             var livre = await _db.Livres.FindAsync(id);
@@ -102,7 +99,7 @@ namespace BiblioPlomb.Services
             return TypedResults.NoContent();
         }
 
-        // Vérifie si livre est Dispo
+        // Vérifie si le livre est disponible
         public async Task<IResult> VerifDispo(string titre)
         {
             var livres = await _db.Livres
@@ -141,6 +138,19 @@ namespace BiblioPlomb.Services
 
             await _db.SaveChangesAsync();
             return TypedResults.Ok(livre);
+        }
+
+        public async Task<IResult> AddGenre(GenreDTO genreDTO)
+        {
+            var genre = new Genre
+            {
+                Nom = genreDTO.Nom
+            };
+
+            _db.Genres.Add(genre);
+            await _db.SaveChangesAsync();
+
+            return TypedResults.Created($"/genres/{genre.Id}", genre);
         }
     }
 }

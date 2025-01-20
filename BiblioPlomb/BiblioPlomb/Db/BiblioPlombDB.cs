@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BiblioPlomb.Models;
-using Biblioplomb.Models;
+using BiblioPlomb.Models;
+
 
 namespace BiblioPlomb.Db
 {
@@ -9,18 +10,15 @@ namespace BiblioPlomb.Db
         public BiblioPlombDB(DbContextOptions<BiblioPlombDB> options)
             : base(options) { }
 
-        // Définir des DbSets pour les entités
         public DbSet<Livre> Livres { get; set; }
         public DbSet<Auteur> Auteurs { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<AuteurLivre> AuteurLivres { get; set; }
-        //public DbSet<LivreGenre> LivreGenres { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configurer les clés composites pour les entités de relation
             modelBuilder.Entity<AuteurLivre>()
                 .HasKey(auteurlivre => new { auteurlivre.AuteurId, auteurlivre.LivreId });
 
@@ -39,18 +37,10 @@ namespace BiblioPlomb.Db
                 .WithMany(genre => genre.Livres)
                 .HasForeignKey(livre => livre.GenreId);
 
-            //modelBuilder.Entity<LivreGenre>()
-            //    .HasKey(livregenre => new { livregenre.LivreId, livregenre.GenreId });
-
-            //modelBuilder.Entity<LivreGenre>()
-            //    .HasOne(livregenre => livregenre.Livre)
-            //    .WithMany(livre => livre.LivreGenres)
-            //    .HasForeignKey(livregenre => livregenre.LivreId);
-
-            //modelBuilder.Entity<LivreGenre>()
-            //    .HasOne(livregenre => livregenre.Genre)
-            //    .WithMany(genre => genre.LivreGenres)
-            //    .HasForeignKey(livregenre => livregenre.GenreId);
+            //modelBuilder.Entity<Genre>()
+            //    .HasOne(genre => genre.Livres)
+            //    .WithMany(livre => livre.Genres)
+            //    .HasForeignKey(genre => genre.LivreId);
         }
     }
 }

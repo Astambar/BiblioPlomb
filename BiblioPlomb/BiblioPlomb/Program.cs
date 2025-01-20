@@ -1,64 +1,50 @@
-//var builder = WebApplication.CreateBuilder(args);
-
-//// Add services to the container.
-//builder.Services.AddControllersWithViews();
-
-//var app = builder.Build();
-
-//// Configure the HTTP request pipeline.
-//if (!app.Environment.IsDevelopment())
-//{
-//    app.UseExceptionHandler("/Home/Error");
-//    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-//    app.UseHsts();
-//}
-
-//app.UseHttpsRedirection();
-//app.UseRouting();
-
-//app.UseAuthorization();
-
-//app.MapStaticAssets();
-
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home}/{action=Index}/{id?}")
-//    .WithStaticAssets();
-
-
-//app.Run();
-
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using BiblioPlomb.Db;
+using BiblioPlomb.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configurer la base de données pour utiliser SQLite
+// base de données pour utiliser SQLite
 builder.Services.AddDbContext<BiblioPlombDB>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("BiblioPlombContext")));
 
-// Ajouter les services pour les contrôleurs et les vues
+// les services pour les contrôleurs et les vues
 builder.Services.AddControllersWithViews();
+
+// Ajout des services
+builder.Services.AddScoped<LivreService>();
+builder.Services.AddScoped<GenreService>();
 
 var app = builder.Build();
 
-// Configurer le pipeline de requêtes HTTP
+
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Bibliotheque/Error");
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles(); // Permet de servir les fichiers statiques (CSS, JS, images, etc.)
+app.UseStaticFiles(); // Pour les fichiers statiques (CSS, JS, images, etc.)
 app.UseRouting();
 app.UseAuthorization();
 
-// Configurer les routes pour les contrôleurs
+//routes pour les contrôleurs
 app.MapControllerRoute(
-    name: "default",
+    name: "default", 
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "livre", 
+    pattern: "Create/{action=Index}/{id?}", 
+    defaults: new { controller = "Livres" });
+
+//app.MapControllerRoute(
+//    name: "genre",
+//    pattern: "Create/{action=Index}/{id?}",
+//    defaults: new { controller = "Roles" });
+
+
 
 app.Run();

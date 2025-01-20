@@ -1,4 +1,4 @@
-﻿namespace Biblioplomb.DTO
+﻿namespace BiblioPlomb.DTO
 {
     public class AuteurDTO
     {
