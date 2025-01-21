@@ -18,6 +18,14 @@ builder.Services.AddDbContext<BiblioPlombContext>(options =>
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 
+// Register User Service and Repository
+builder.Services.AddScoped<IUtilisateurService, UtilisateurService>();
+builder.Services.AddScoped<IUtilisateurRepository, UtilisateurRepository>();
+
+// Register User Service and Repository
+builder.Services.AddScoped<IUtilisateurService, UtilisateurService>();
+builder.Services.AddScoped<IUtilisateurRepository, UtilisateurRepository>();
+
 // Swagger Configuration - PARTIE 1
 builder.Services.AddSwaggerGen(c =>
 {

@@ -36,7 +36,7 @@ namespace BiblioPlomb.Services
 
         public async Task<Role?> GetRoleByIdAsync(int id)
         {
-            return await _roleRepository.GetByIdAsync(id);
+            return await _roleRepository.GetRoleByIdAsync(id);
         }
 
         public async Task<IEnumerable<Role>> GetAllRolesAsync()
@@ -59,7 +59,7 @@ namespace BiblioPlomb.Services
             if (string.IsNullOrWhiteSpace(newType))
                 throw new ArgumentException("Le type ne peut pas être vide.", nameof(newType));
 
-            var existingRole = await _roleRepository.GetByIdAsync(id);
+            var existingRole = await _roleRepository.GetRoleByIdAsync(id);
             if (existingRole == null)
                 return null;
 
@@ -69,7 +69,7 @@ namespace BiblioPlomb.Services
                 throw new InvalidOperationException($"Un rôle avec le type '{newType}' existe déjà.");
 
             existingRole.Type = newType;
-            var updatedRole = await _roleRepository.UpdateAsync(existingRole);
+            var updatedRole = await _roleRepository.UpdateRoleAsync(existingRole);
             if (updatedRole != null)
                 await _roleRepository.SaveChangesAsync();
 
@@ -78,7 +78,7 @@ namespace BiblioPlomb.Services
 
         public async Task<bool> DeleteRoleAsync(int id)
         {
-            var success = await _roleRepository.DeleteAsync(id);
+            var success = await _roleRepository.DeleteRoleAsync(id);
             if (success)
                 await _roleRepository.SaveChangesAsync();
             return success;

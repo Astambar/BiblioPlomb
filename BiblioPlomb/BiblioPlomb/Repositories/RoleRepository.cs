@@ -13,7 +13,7 @@ namespace BiblioPlomb.Repositories
             _context = context;
         }
 
-        public async Task<Role?> GetByIdAsync(int id)
+        public async Task<Role?> GetRoleByIdAsync(int id)
         {
             return await _context.Roles.FindAsync(id);
         }
@@ -45,9 +45,9 @@ namespace BiblioPlomb.Repositories
             return role;
         }
 
-        public async Task<Role?> UpdateAsync(Role role)
+        public async Task<Role?> UpdateRoleAsync(Role role)
         {
-            var existingRole = await GetByIdAsync(role.Id);
+            var existingRole = await GetRoleByIdAsync(role.Id);
             if (existingRole == null) return null;
 
             existingRole.Type = role.Type;
@@ -55,9 +55,9 @@ namespace BiblioPlomb.Repositories
             return existingRole;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteRoleAsync(int id)
         {
-            var role = await GetByIdAsync(id);
+            var role = await GetRoleByIdAsync(id);
             if (role == null) return false;
 
             _context.Roles.Remove(role);
@@ -73,6 +73,15 @@ namespace BiblioPlomb.Repositories
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Role>> GetRolesByUtilisateurIdAsync(int utilisateurId)
+        {
+            return await _context.UtilisateurRoles
+                .Include(ur => ur.Role)
+                .Where(ur => ur.UtilisateurId == utilisateurId)
+                .Select(ur => ur.Role)
+                .ToListAsync();
         }
     }
 }

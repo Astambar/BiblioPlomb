@@ -1,0 +1,104 @@
+@model IEnumerable<BiblioPlomb.Models.Utilisateur>
+
+@{
+    ViewData["Title"] = "Liste des utilisateurs";
+}
+
+<h1>Liste des utilisateurs</h1>
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <div class="input-group">
+            <input type="text" id="searchInput" class="form-control" placeholder="Rechercher un utilisateur..."
+                   value="@ViewBag.SearchTerm">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 text-right">
+        <a asp-action="Create" class="btn btn-primary">Créer un nouvel utilisateur</a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Nom)</th>
+            <th>@Html.DisplayNameFor(model => model.Prenom)</th>
+            <th>@Html.DisplayNameFor(model => model.Email)</th>
+            <th>Rôles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="utilisateursTableBody">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Nom)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prenom)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>
+                    @if (item.UtilisateurRoles != null)
+                    {
+                        foreach (var utilisateurRole in item.UtilisateurRoles)
+                        {
+                            <span>@utilisateurRole.Role.Type</span><br />
+                        }
+                    }
+                    else
+                    {
+                        <span>Aucun rôle assigné</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Modifier</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Détails</a>
+                    <button onclick="deleteUtilisateur(@item.Id)" class="btn btn-danger btn-sm">Supprimer</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        let searchTimeout;
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            clearTimeout(searchTimeout);
+            const searchValue = e.target.value;
+
+            searchTimeout = setTimeout(() => {
+                window.location.href = `/Utilisateur/Index?searchTerm=${encodeURIComponent(searchValue)}`;
+            }, 500);
+        });
+
+        async function deleteUtilisateur(id) {
+            if (!confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
+                return;
+            }
+
+            try {
+                const form = document.createElement('form');
+                form.method = 'post';
+                form.action = `/Utilisateur/Delete/${id}`;
+
+                // Ajouter le token anti-falsification
+                const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]');
+                if (antiForgeryToken) {
+                    const tokenInput = document.createElement('input');
+                    tokenInput.type = 'hidden';
+                    tokenInput.name = '__RequestVerificationToken';
+                    tokenInput.value = antiForgeryToken.value;
+                    form.appendChild(tokenInput);
+                }
+
+                document.body.appendChild(form);
+                form.submit();
+            } catch (error) {
+                alert('Erreur lors de la suppression : ' + error.message);
+            }
+        }
+    </script>
+}

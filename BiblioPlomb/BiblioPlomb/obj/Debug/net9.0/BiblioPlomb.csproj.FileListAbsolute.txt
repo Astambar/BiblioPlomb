@@ -247,7 +247,6 @@ C:\Environement_Programation\repo_groupe\BiblioPLomb\BiblioPlomb\BiblioPlomb\obj
 C:\Environement_Programation\repo_groupe\BiblioPLomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\BiblioPlomb.pdb
 C:\Environement_Programation\repo_groupe\BiblioPLomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\BiblioPlomb.genruntimeconfig.cache
 C:\Environement_Programation\repo_groupe\BiblioPLomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\ref\BiblioPlomb.dll
-C:\Environement_Programation\repo_groupe\BiblioPLomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Environement_Programation\repo_groupe\BiblioPLomb\BiblioPlomb\BiblioPlomb\bin\Debug\net9.0\Microsoft.OpenApi.dll
 C:\Environement_Programation\repo_groupe\BiblioPLomb\BiblioPlomb\BiblioPlomb\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Environement_Programation\repo_groupe\BiblioPLomb\BiblioPlomb\BiblioPlomb\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
@@ -370,3 +369,4 @@ C:\Environement_Programation\repo_groupe\BiblioPLomb\BiblioPlomb\BiblioPlomb\bin
 C:\Environement_Programation\repo_groupe\BiblioPLomb\BiblioPlomb\BiblioPlomb\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Environement_Programation\repo_groupe\BiblioPLomb\BiblioPlomb\BiblioPlomb\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Environement_Programation\repo_groupe\BiblioPLomb\BiblioPlomb\BiblioPlomb\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Environement_Programation\repo_groupe\BiblioPLomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
