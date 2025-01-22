@@ -7021,6 +7021,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.1",
       "Microsoft.Extensions.DependencyInjection >= 9.0.1",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 9.0.0",
+      "Newtonsoft.Json >= 13.0.3",
       "Swashbuckle.AspNetCore >= 7.2.0",
       "Swashbuckle.AspNetCore.Annotations >= 7.2.0"
     ]
@@ -7099,6 +7100,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[9.0.0, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.3, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

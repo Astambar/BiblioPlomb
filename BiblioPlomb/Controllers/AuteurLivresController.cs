@@ -22,7 +22,7 @@ namespace BiblioPlomb.Controllers
         // GET: AuteurLivres
         public async Task<IActionResult> Index()
         {
-            var biblioPlombDB = _context.AuteurLivre.Include(a => a.Auteur).Include(a => a.Livre);
+            var biblioPlombDB = _context.AuteurLivres.Include(a => a.Auteur).Include(a => a.Livre);
             return View(await biblioPlombDB.ToListAsync());
         }
 
@@ -34,7 +34,7 @@ namespace BiblioPlomb.Controllers
                 return NotFound();
             }
 
-            var auteurLivre = await _context.AuteurLivre
+            var auteurLivre = await _context.AuteurLivres
                 .Include(a => a.Auteur)
                 .Include(a => a.Livre)
                 .FirstOrDefaultAsync(m => m.AuteurId == id);
@@ -50,7 +50,7 @@ namespace BiblioPlomb.Controllers
         public IActionResult Create()
         {
             ViewData["AuteurId"] = new SelectList(_context.Set<Auteur>(), "Id", "Id");
-            ViewData["LivreId"] = new SelectList(_context.Livre, "Id", "Id");
+            ViewData["LivreId"] = new SelectList(_context.Livres, "Id", "Id");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace BiblioPlomb.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AuteurId"] = new SelectList(_context.Set<Auteur>(), "Id", "Id", auteurLivre.AuteurId);
-            ViewData["LivreId"] = new SelectList(_context.Livre, "Id", "Id", auteurLivre.LivreId);
+            ViewData["LivreId"] = new SelectList(_context.Livres, "Id", "Id", auteurLivre.LivreId);
             return View(auteurLivre);
         }
 
@@ -78,13 +78,13 @@ namespace BiblioPlomb.Controllers
                 return NotFound();
             }
 
-            var auteurLivre = await _context.AuteurLivre.FindAsync(id);
+            var auteurLivre = await _context.AuteurLivres.FindAsync(id);
             if (auteurLivre == null)
             {
                 return NotFound();
             }
             ViewData["AuteurId"] = new SelectList(_context.Set<Auteur>(), "Id", "Id", auteurLivre.AuteurId);
-            ViewData["LivreId"] = new SelectList(_context.Livre, "Id", "Id", auteurLivre.LivreId);
+            ViewData["LivreId"] = new SelectList(_context.Livres, "Id", "Id", auteurLivre.LivreId);
             return View(auteurLivre);
         }
 
@@ -121,7 +121,7 @@ namespace BiblioPlomb.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AuteurId"] = new SelectList(_context.Set<Auteur>(), "Id", "Id", auteurLivre.AuteurId);
-            ViewData["LivreId"] = new SelectList(_context.Livre, "Id", "Id", auteurLivre.LivreId);
+            ViewData["LivreId"] = new SelectList(_context.Livres, "Id", "Id", auteurLivre.LivreId);
             return View(auteurLivre);
         }
 
@@ -133,7 +133,7 @@ namespace BiblioPlomb.Controllers
                 return NotFound();
             }
 
-            var auteurLivre = await _context.AuteurLivre
+            var auteurLivre = await _context.AuteurLivres
                 .Include(a => a.Auteur)
                 .Include(a => a.Livre)
                 .FirstOrDefaultAsync(m => m.AuteurId == id);
@@ -150,10 +150,10 @@ namespace BiblioPlomb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var auteurLivre = await _context.AuteurLivre.FindAsync(id);
+            var auteurLivre = await _context.AuteurLivres.FindAsync(id);
             if (auteurLivre != null)
             {
-                _context.AuteurLivre.Remove(auteurLivre);
+                _context.AuteurLivres.Remove(auteurLivre);
             }
 
             await _context.SaveChangesAsync();
@@ -162,7 +162,7 @@ namespace BiblioPlomb.Controllers
 
         private bool AuteurLivreExists(int id)
         {
-            return _context.AuteurLivre.Any(e => e.AuteurId == id);
+            return _context.AuteurLivres.Any(e => e.AuteurId == id);
         }
     }
 }

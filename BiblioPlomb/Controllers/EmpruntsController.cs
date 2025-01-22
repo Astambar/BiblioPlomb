@@ -20,9 +20,10 @@ namespace BiblioPlomb.Controllers
         }
 
         // GET: Emprunts
+        
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Emprunt.ToListAsync());
+            return View(await _context.Emprunts.ToListAsync());
         }
 
         // GET: Emprunts/Details/5
@@ -33,7 +34,7 @@ namespace BiblioPlomb.Controllers
                 return NotFound();
             }
 
-            var emprunt = await _context.Emprunt
+            var emprunt = await _context.Emprunts
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (emprunt == null)
             {
@@ -50,8 +51,6 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Emprunts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,UserID,DateEmprunt,DateRetour")] Emprunt emprunt)
@@ -73,7 +72,7 @@ namespace BiblioPlomb.Controllers
                 return NotFound();
             }
 
-            var emprunt = await _context.Emprunt.FindAsync(id);
+            var emprunt = await _context.Emprunts.FindAsync(id);
             if (emprunt == null)
             {
                 return NotFound();
@@ -82,8 +81,6 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Emprunts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,UserID,DateEmprunt,DateRetour")] Emprunt emprunt)
@@ -124,7 +121,7 @@ namespace BiblioPlomb.Controllers
                 return NotFound();
             }
 
-            var emprunt = await _context.Emprunt
+            var emprunt = await _context.Emprunts
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (emprunt == null)
             {
@@ -139,10 +136,10 @@ namespace BiblioPlomb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var emprunt = await _context.Emprunt.FindAsync(id);
+            var emprunt = await _context.Emprunts.FindAsync(id);
             if (emprunt != null)
             {
-                _context.Emprunt.Remove(emprunt);
+                _context.Emprunts.Remove(emprunt);
             }
 
             await _context.SaveChangesAsync();
@@ -151,7 +148,7 @@ namespace BiblioPlomb.Controllers
 
         private bool EmpruntExists(int id)
         {
-            return _context.Emprunt.Any(e => e.ID == id);
+            return _context.Emprunts.Any(e => e.ID == id);
         }
     }
 }

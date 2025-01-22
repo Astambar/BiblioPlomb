@@ -1,4 +1,6 @@
-﻿namespace BiblioPlomb.Models
+﻿using BiblioPlomb.Models;
+
+namespace BiblioPlomb.Models
 {
     public class LivreGenre
     {

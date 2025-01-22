@@ -1,0 +1,49 @@
+﻿@model BiblioPlomb.Models.Utilisateur
+
+@{
+    ViewData["Title"] = "Détails de l'utilisateur";
+}
+
+<h1>Détails de l'utilisateur</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prenom)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UtilisateurRoles)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var utilisateurRole in Model.UtilisateurRoles)
+            {
+                <span>@utilisateurRole.Role.Type</span>
+
+                <br />
+            }
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Modifier</a>
+    <a asp-action="Index" class="btn btn-secondary">Retour à la liste</a>
+</div>

@@ -1,0 +1,72 @@
+﻿@model BiblioPlomb.Models.Utilisateur
+
+@{
+    ViewData["Title"] = "Modifier l'utilisateur";
+}
+
+<h1>Modifier l'utilisateur</h1>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="Nom" class="control-label"></label>
+                <input asp-for="Nom" class="form-control" />
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Prenom" class="control-label"></label>
+                <input asp-for="Prenom" class="form-control" />
+                <span asp-validation-for="Prenom" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Rôles</label>
+                @if (ViewBag.Roles == null || ((IEnumerable<SelectListItem>)ViewBag.Roles).Count() == 0)
+                {
+                    <span class="text-danger">Aucun rôle disponible.</span>
+                }
+                else
+                {
+                    foreach (var role in ViewBag.Roles)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="selectedRoles" value="@role.Value"
+                            @(ViewBag.UtilisateurRoles.Contains(int.Parse(role.Value)) ? "checked" : "") />
+                            <label class="form-check-label">@role.Text</label>
+                        </div>
+                    }
+                }
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Enregistrer" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Retour à la liste</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

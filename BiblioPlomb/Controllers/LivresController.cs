@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using BiblioPlomb.Data;
+﻿using BiblioPlomb.Data;
+using BiblioPlomb.DTO;
 using BiblioPlomb.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BiblioPlomb.Controllers
 {
@@ -22,7 +21,7 @@ namespace BiblioPlomb.Controllers
         // GET: Livres
         public async Task<IActionResult> Index()
         {
-            var biblioPlombDB = _context.Livre.Include(l => l.Genre);
+            var biblioPlombDB = _context.Livres.Include(livre => livre.Genre);
             return View(await biblioPlombDB.ToListAsync());
         }
 
@@ -34,8 +33,8 @@ namespace BiblioPlomb.Controllers
                 return NotFound();
             }
 
-            var livre = await _context.Livre
-                .Include(l => l.Genre)
+            var livre = await _context.Livres
+                .Include(livre => livre.Genre)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (livre == null)
             {
@@ -48,13 +47,11 @@ namespace BiblioPlomb.Controllers
         // GET: Livres/Create
         public IActionResult Create()
         {
-            ViewData["GenreId"] = new SelectList(_context.Genre, "Id", "Id");
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id");
             return View();
         }
 
         // POST: Livres/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Titre,Auteur,Dispo,Etat,ISBN,GenreId,AuteurId")] Livre livre)
@@ -65,7 +62,7 @@ namespace BiblioPlomb.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GenreId"] = new SelectList(_context.Genre, "Id", "Id", livre.GenreId);
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id", livre.GenreId);
             return View(livre);
         }
 
@@ -77,18 +74,16 @@ namespace BiblioPlomb.Controllers
                 return NotFound();
             }
 
-            var livre = await _context.Livre.FindAsync(id);
+            var livre = await _context.Livres.FindAsync(id);
             if (livre == null)
             {
                 return NotFound();
             }
-            ViewData["GenreId"] = new SelectList(_context.Genre, "Id", "Id", livre.GenreId);
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id", livre.GenreId);
             return View(livre);
         }
 
         // POST: Livres/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Titre,Auteur,Dispo,Etat,ISBN,GenreId,AuteurId")] Livre livre)
@@ -107,7 +102,7 @@ namespace BiblioPlomb.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LivreExists(livre.Id))
+                    if (!VerifDispo(livre.Id))
                     {
                         return NotFound();
                     }
@@ -118,7 +113,7 @@ namespace BiblioPlomb.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GenreId"] = new SelectList(_context.Genre, "Id", "Id", livre.GenreId);
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id", livre.GenreId);
             return View(livre);
         }
 
@@ -130,8 +125,8 @@ namespace BiblioPlomb.Controllers
                 return NotFound();
             }
 
-            var livre = await _context.Livre
-                .Include(l => l.Genre)
+            var livre = await _context.Livres
+                .Include(livre => livre.Genre)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (livre == null)
             {
@@ -146,19 +141,19 @@ namespace BiblioPlomb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var livre = await _context.Livre.FindAsync(id);
+            var livre = await _context.Livres.FindAsync(id);
             if (livre != null)
             {
-                _context.Livre.Remove(livre);
+                _context.Livres.Remove(livre);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LivreExists(int id)
+        private bool VerifDispo(int id)
         {
-            return _context.Livre.Any(e => e.Id == id);
+            return _context.Livres.Any(e => e.Id == id);
         }
     }
 }

@@ -12,5 +12,18 @@ namespace BiblioPlomb.DTO
         public long ISBN { get; set; }
         public int GenreId { get; set; }
         public int AuteurId { get; set; }
+
+        public LivreDTO() { }
+
+        public LivreDTO(Livre livre)
+        {
+            Id = livre.Id;
+            Titre = livre.Titre;
+            Dispo = livre.Dispo;
+            Etat = livre.Etat;
+            ISBN = livre.ISBN;
+            GenreId = livre.GenreId;
+            AuteurId = livre.AuteurId;
+        }
     }
 }

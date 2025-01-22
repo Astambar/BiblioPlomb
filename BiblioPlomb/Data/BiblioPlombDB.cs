@@ -1,22 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using BiblioPlomb.Models;
+
+
 
 namespace BiblioPlomb.Data
 {
     public class BiblioPlombDB : DbContext
     {
         public BiblioPlombDB(DbContextOptions<BiblioPlombDB> options)
-            : base(options)
-        {
-        }
+            : base(options) { }
 
-        public DbSet<BiblioPlomb.Models.Emprunt> Emprunt { get; set; } = default!;
-        public DbSet<BiblioPlomb.Models.Genre> Genre { get; set; } = default!;
-        public DbSet<BiblioPlomb.Models.Livre> Livre { get; set; } = default!;
+        public DbSet<Emprunt> Emprunts { get; set; }
+        public DbSet<Livre> Livres { get; set; }
+        public DbSet<Auteur> Auteurs { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<AuteurLivre> AuteurLivres { get; set; }
+        public DbSet<Utilisateur> Utilisateurs { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UtilisateurRole> UtilisateurRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,11 +41,21 @@ namespace BiblioPlomb.Data
                 .WithMany(genre => genre.Livres)
                 .HasForeignKey(livre => livre.GenreId);
 
-            //modelBuilder.Entity<Genre>()
-            //    .HasOne(genre => genre.Livres)
-            //    .WithMany(livre => livre.Genres)
-            //    .HasForeignKey(genre => genre.LivreId);
+            // Configuration de la relation many-to-many entre Utilisateur et Role
+            modelBuilder.Entity<UtilisateurRole>()
+                .HasKey(ur => new { ur.UtilisateurId, ur.RoleId });
+
+            modelBuilder.Entity<UtilisateurRole>()
+                .HasOne(ur => ur.Utilisateur)
+                .WithMany(u => u.UtilisateurRoles)
+                .HasForeignKey(ur => ur.UtilisateurId);
+
+            modelBuilder.Entity<UtilisateurRole>()
+                .HasOne(ur => ur.Role)
+                .WithMany(r => r.UtilisateurRoles)
+                .HasForeignKey(ur => ur.RoleId);
+
+
         }
-        public DbSet<BiblioPlomb.Models.AuteurLivre> AuteurLivre { get; set; } = default!;
     }
 }

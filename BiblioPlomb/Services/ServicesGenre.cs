@@ -1,18 +1,18 @@
-﻿using BiblioPlomb.Data;
+﻿using BiblioPlomb.DTO;
+using BiblioPlomb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Linq;
-using BiblioPlomb.DTO;
-using BiblioPlomb.Models;
+using BiblioPlomb.Data;
 
 namespace BiblioPlomb.Services
 {
-    public class GenreService
+    public class ServiceGenre
     {
         private readonly BiblioPlombDB _db;
 
-        public GenreService(BiblioPlombDB db)
+        public ServiceGenre(BiblioPlombDB db)
         {
             _db = db;
         }
@@ -25,7 +25,7 @@ namespace BiblioPlomb.Services
                 Nom = genreDTO.Nom
             };
 
-            _db.Genre.Add(genre);
+            _db.Genres.Add(genre);
             await _db.SaveChangesAsync();
 
             return TypedResults.Created($"/genres/{genre.Id}", genre);
@@ -34,7 +34,7 @@ namespace BiblioPlomb.Services
         // genre par ID
         public async Task<IResult> GetGenre(int id)
         {
-            var genre = await _db.Genre
+            var genre = await _db.Genres
                 .FirstOrDefaultAsync(genre => genre.Id == id);
 
             return genre == null ? TypedResults.NotFound() : TypedResults.Ok(genre);
@@ -43,14 +43,14 @@ namespace BiblioPlomb.Services
         // Liste tous les genres
         public async Task<IResult> GetAllGenres()
         {
-            var genres = await _db.Genre.ToListAsync();
+            var genres = await _db.Genres.ToListAsync();
             return TypedResults.Ok(genres);
         }
 
         // Modifier un genre
         public async Task<IResult> UpdateGenre(int id, GenreDTO genreDTO)
         {
-            var genre = await _db.Genre.FindAsync(id);
+            var genre = await _db.Genres.FindAsync(id);
             if (genre == null)
             {
                 return TypedResults.NotFound();
@@ -65,13 +65,13 @@ namespace BiblioPlomb.Services
         // Supprimer un genre
         public async Task<IResult> DeleteGenre(int id)
         {
-            var genre = await _db.Genre.FindAsync(id);
+            var genre = await _db.Genres.FindAsync(id);
             if (genre == null)
             {
                 return TypedResults.NotFound();
             }
 
-            _db.Genre.Remove(genre);
+            _db.Genres.Remove(genre);
             await _db.SaveChangesAsync();
             return TypedResults.NoContent();
         }
