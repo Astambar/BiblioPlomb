@@ -64,7 +64,7 @@ namespace BiblioPlomb.Repositories
             return true;
         }
 
-        public async Task<bool> ExistsByTypeAsync(string type)
+        public async Task<bool> ExistsRoleByTypeAsync(string type)
         {
             return await _context.Roles
                 .AnyAsync(r => r.Type.ToLower() == type.ToLower());

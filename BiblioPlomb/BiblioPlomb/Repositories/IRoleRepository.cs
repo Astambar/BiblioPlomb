@@ -11,7 +11,7 @@ namespace BiblioPlomb.Repositories
         Task<Role> AddAsync(Role role);
         Task<Role?> UpdateRoleAsync(Role role);
         Task<bool> DeleteRoleAsync(int id);
-        Task<bool> ExistsByTypeAsync(string type);
+        Task<bool> ExistsRoleByTypeAsync(string type);
         Task SaveChangesAsync();
         Task<IEnumerable<Role>> GetRolesByUtilisateurIdAsync(int utilisateurId);
     }

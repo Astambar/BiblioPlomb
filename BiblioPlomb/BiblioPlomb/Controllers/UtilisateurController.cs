@@ -109,9 +109,15 @@ namespace BiblioPlomb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            await _utilisateurService.DeleteUtilisateurAsync(id);
+            var deletedId = await _utilisateurService.DeleteUtilisateurAsync(id);
+            if (deletedId == null)
+            {
+                return NotFound();
+            }
+
             return RedirectToAction(nameof(Index));
         }
+
 
         [HttpGet("{id}/roles")]
         public async Task<IActionResult> GetRolesByUtilisateurId(int id)

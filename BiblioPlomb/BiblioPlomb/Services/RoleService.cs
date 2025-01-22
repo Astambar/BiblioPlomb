@@ -19,7 +19,7 @@ namespace BiblioPlomb.Services
             if (string.IsNullOrWhiteSpace(type))
                 throw new ArgumentException("Le type ne peut pas être vide.", nameof(type));
 
-            if (await _roleRepository.ExistsByTypeAsync(type))
+            if (await _roleRepository.ExistsRoleByTypeAsync(type))
                 throw new InvalidOperationException($"Un rôle avec le type '{type}' existe déjà.");
 
             var role = new Role { Type = type };
@@ -51,7 +51,7 @@ namespace BiblioPlomb.Services
 
         public async Task<bool> RoleExistsAsync(string type)
         {
-            return await _roleRepository.ExistsByTypeAsync(type);
+            return await _roleRepository.ExistsRoleByTypeAsync(type);
         }
 
         public async Task<Role?> UpdateRoleAsync(int id, string newType)

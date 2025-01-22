@@ -68,9 +68,14 @@ namespace BiblioPlomb.Repositories
         public async Task<bool> DeleteUtilisateurAsync(int id)
         {
             var utilisateur = await _context.Utilisateurs.FindAsync(id);
+            var utilisateurRoles = await _context.UtilisateurRoles.Where(ur => ur.UtilisateurId == id).ToListAsync();
             if (utilisateur == null) return false;
-
+            if (utilisateurRoles.Count() >= 1)
+            {
+                _context.UtilisateurRoles.RemoveRange(utilisateurRoles);
+            }
             _context.Utilisateurs.Remove(utilisateur);
+            await _context.SaveChangesAsync();
             return true;
         }
 
@@ -98,7 +103,7 @@ namespace BiblioPlomb.Repositories
 
         public async Task UpdateUtilisateurRoleAsync(UtilisateurRole utilisateurRole)
         {
-            _context.UtilisateurRoles.Update(utilisateurRole);
+             _context.UtilisateurRoles.Update(utilisateurRole);
         }
 
         public async Task AddUtilisateurRoleAsync(UtilisateurRole utilisateurRole)

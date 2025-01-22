@@ -111,27 +111,7 @@ namespace BiblioPlomb.Services
 
         public async Task<bool> DeleteUtilisateurAsync(int id)
         {
-            var success = await _utilisateurRepository.DeleteUtilisateurAsync(id);
-            if (success)
-            {
-                // Supprimer les rôles associés de la table d'association
-                var utilisateurRoles = await _utilisateurRepository.GetUtilisateurRolesByUtilisateurIdAsync(id);
-                foreach (var utilisateurRole in utilisateurRoles)
-                {
-                    Console.WriteLine("Début de la suppression du rôle avec ID : " + utilisateurRole.RoleId);
-                    try
-                    {
-                        await _utilisateurRepository.DeleteUtilisateurRoleAsync(id, utilisateurRole.RoleId);
-                        Console.WriteLine("Rôle supprimé avec succès.");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Erreur lors de la suppression du rôle : " + ex.Message);
-                    }
-                }
-                await _utilisateurRepository.SaveChangesAsync();
-            }
-            return success;
+            return await _utilisateurRepository.DeleteUtilisateurAsync(id);
         }
 
         public async Task<IEnumerable<Role>> GetRolesByUtilisateurIdAsync(int utilisateurId)
