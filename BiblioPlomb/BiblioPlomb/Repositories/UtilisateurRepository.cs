@@ -56,14 +56,21 @@ namespace BiblioPlomb.Repositories
 
         public async Task<Utilisateur?> UpdateUtilisateurAsync(Utilisateur utilisateur)
         {
-            var existingUser = await GetByIdAsync(utilisateur.Id);
+            var existingUser = await _context.Utilisateurs.FindAsync(utilisateur.Id);
             if (existingUser == null) return null;
 
-            _context.Entry(existingUser).CurrentValues.SetValues(utilisateur);
-            existingUser = utilisateur;
-            
+            existingUser.Nom = utilisateur.Nom;
+            existingUser.Prenom = utilisateur.Prenom;
+            existingUser.Email = utilisateur.Email;
+            existingUser.MotDePasse = utilisateur.MotDePasse; // Assurez-vous de gérer le hachage
+
+            _context.Utilisateurs.Update(existingUser);
+
+            await _context.SaveChangesAsync();
+
             return existingUser;
         }
+
         public async Task<Utilisateur?> UpdateUtilisateurAndRolesAsync(Utilisateur utilisateur, int[] selectedRoles)
         {
             // Récupérer l'utilisateur existant avec ses rôles

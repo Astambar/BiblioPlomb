@@ -71,25 +71,32 @@ namespace BiblioPlomb.Services
         {
             var utilisateur = await _utilisateurRepository.GetByIdAsync(id);
             if (utilisateur == null)
+            {
+                Console.WriteLine("Utilisateur non trouvé pour l'ID : " + id);
                 throw new InvalidOperationException("L'utilisateur n'existe pas.");
+            }
 
             utilisateur.Nom = nom;
             utilisateur.Prenom = prenom;
             utilisateur.Email = email;
             utilisateur.MotDePasse = motdepasse;
 
+            Console.WriteLine("Mise à jour des informations de l'utilisateur...");
             await _utilisateurRepository.UpdateUtilisateurAsync(utilisateur);
             await _utilisateurRepository.SaveChangesAsync();
+            Console.WriteLine("Informations de l'utilisateur mises à jour.");
 
-            // Gérer les rôles
+            // Gérer les rôles associés à l'utilisateur
             var utilisateurRoles = await _utilisateurRepository.GetUtilisateurRolesByUtilisateurIdAsync(id);
             var currentRoleIds = utilisateurRoles.Select(ur => ur.RoleId).ToList();
+            Console.WriteLine("Rôles actuels : " + string.Join(", ", currentRoleIds));
 
             // Supprimer les rôles décochés
             foreach (var roleId in currentRoleIds)
             {
                 if (!selectedRoles.Contains(roleId))
                 {
+                    Console.WriteLine("Suppression du rôle : " + roleId);
                     await _utilisateurRepository.DeleteUtilisateurRoleAsync(id, roleId);
                 }
             }
@@ -99,15 +106,18 @@ namespace BiblioPlomb.Services
             {
                 if (!currentRoleIds.Contains(roleId))
                 {
+                    Console.WriteLine("Ajout du rôle : " + roleId);
                     var utilisateurRole = new UtilisateurRole { UtilisateurId = id, RoleId = roleId };
                     await _utilisateurRepository.AddUtilisateurRoleAsync(utilisateurRole);
                 }
             }
 
             await _utilisateurRepository.SaveChangesAsync();
+            Console.WriteLine("Rôles mis à jour.");
 
             return utilisateur;
         }
+
 
         public async Task<bool> DeleteUtilisateurAsync(int id)
         {

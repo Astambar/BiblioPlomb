@@ -87,11 +87,12 @@ namespace BiblioPlomb.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    await _utilisateurService.UpdateUtilisateurAsync(id, nom, prenom, email, motdepasse, selectedRoles);
-                    return RedirectToAction(nameof(Index));
-                }
+                await _utilisateurService.UpdateUtilisateurAsync(id, nom, prenom, email, motdepasse, selectedRoles);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateException dbEx)
+            {
+                ModelState.AddModelError("", dbEx.InnerException?.Message ?? dbEx.Message);
             }
             catch (Exception ex)
             {
