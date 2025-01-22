@@ -14,6 +14,7 @@ namespace BiblioPlomb.Repositories
         Task<IEnumerable<UtilisateurRole>> GetUtilisateurRolesByUtilisateurIdAsync(int utilisateurId);
         Task DeleteUtilisateurRoleAsync(int utilisateurId, int roleId);
         Task UpdateUtilisateurRoleAsync(UtilisateurRole utilisateurRole);
+        Task<Utilisateur?> UpdateUtilisateurAndRolesAsync(Utilisateur utilisateur, int[] selectedRoles);
         Task AddUtilisateurRoleAsync(UtilisateurRole utilisateurRole);
         Task<Utilisateur> CreateUtilisateurAsync(string nom, string prenom, string email, string motDePasseHash, int roleId);
     }

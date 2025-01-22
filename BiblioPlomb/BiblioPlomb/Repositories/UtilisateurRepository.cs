@@ -64,6 +64,46 @@ namespace BiblioPlomb.Repositories
             
             return existingUser;
         }
+        public async Task<Utilisateur?> UpdateUtilisateurAndRolesAsync(Utilisateur utilisateur, int[] selectedRoles)
+        {
+            // Récupérer l'utilisateur existant avec ses rôles
+            var existingUser = await GetByIdAsync(utilisateur.Id);
+            if (existingUser == null)
+            {
+                return null;
+            }
+
+            // Mettre à jour les propriétés de l'utilisateur
+            _context.Entry(existingUser).CurrentValues.SetValues(utilisateur);
+
+            // Mettre à jour les rôles associés à l'utilisateur
+            var currentRoles = await GetUtilisateurRolesByUtilisateurIdAsync(utilisateur.Id);
+            var currentRoleIds = currentRoles.Select(ur => ur.RoleId).ToList();
+
+            // Supprimer les rôles décochés
+            foreach (var roleId in currentRoleIds)
+            {
+                if (!selectedRoles.Contains(roleId))
+                {
+                    await DeleteUtilisateurRoleAsync(utilisateur.Id, roleId);
+                }
+            }
+
+            // Ajouter les nouveaux rôles
+            foreach (var roleId in selectedRoles)
+            {
+                if (!currentRoleIds.Contains(roleId))
+                {
+                    var utilisateurRole = new UtilisateurRole { UtilisateurId = utilisateur.Id, RoleId = roleId };
+                    await AddUtilisateurRoleAsync(utilisateurRole);
+                }
+            }
+
+            // Sauvegarder les changements
+            await _context.SaveChangesAsync();
+
+            return existingUser;
+        }
 
         public async Task<bool> DeleteUtilisateurAsync(int id)
         {
