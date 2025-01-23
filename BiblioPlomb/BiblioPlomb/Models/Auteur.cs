@@ -6,8 +6,9 @@ namespace BiblioPlomb.Models
     {
         public int Id { get; set; }
         public string Nom { get; set; } = string.Empty;
+        public string Prenom { get; set; } = string.Empty;
 
-        // Ajoute la collection des livres de cet auteur
-        public ICollection<AuteurLivre> AuteurLivres { get; set; } = new List<AuteurLivre>();
+        // Ajoute les livres de cet auteur
+        public virtual ICollection<AuteurLivre> AuteurLivres { get; set; } = new List<AuteurLivre>();
     }
 }

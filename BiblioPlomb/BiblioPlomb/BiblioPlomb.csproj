@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Data\livres.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Data\livres.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Controllers\LivresController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Magic.AutoMapper.Extensions.Microsoft.DependencyInjection" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.1" />

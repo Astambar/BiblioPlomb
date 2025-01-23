@@ -21,5 +21,19 @@ namespace BiblioPlomb.Models
         public int AuteurId { get; set; }
         public Genre Genre { get; set; }
         public ICollection<AuteurLivre> AuteurLivres { get; set; } = new List<AuteurLivre>();
+
+        public void ModifierEtat(EtatLivre nouvelEtat)
+        {
+            // Logique pour que un livre ne peut pas revenir à un état meilleur
+            if (Etat == EtatLivre.Dégradé)
+                return;
+
+            if (Etat == EtatLivre.Moyen && nouvelEtat == EtatLivre.Bon)
+                return;
+
+            Etat = nouvelEtat;
+        }
     }
+
 }
+

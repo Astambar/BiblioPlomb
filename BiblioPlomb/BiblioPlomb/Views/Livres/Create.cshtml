@@ -29,23 +29,27 @@
             </div>
             <div class="form-group">
                 <label asp-for="Etat" class="control-label"></label>
-                <select asp-for="Etat" class="form-control"></select>
+                <!-- Utilisation de For= et Items= dans select pour les options de l'enum -->
+                <select asp-for="Etat" class="form-control">
+                    @foreach (var etat in Enum.GetValues(typeof(BiblioPlomb.Models.EtatLivre)))
+                    {
+                        <option value="@etat">@etat</option>
+                    }
+                </select>
                 <span asp-validation-for="Etat" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ISBN" class="control-label"></label>
                 <input asp-for="ISBN" class="form-control" />
                 <span asp-validation-for="ISBN" class="text-danger"></span>
-            </div>
+            </div>         
+
             <div class="form-group">
                 <label asp-for="GenreId" class="control-label"></label>
-                <select asp-for="GenreId" class ="form-control" asp-items="ViewBag.GenreId"></select>
+                <select asp-for="GenreId" class="form-control" asp-items="ViewBag.GenreId"></select>
+                <span asp-validation-for="GenreId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AuteurId" class="control-label"></label>
-                <input asp-for="AuteurId" class="form-control" />
-                <span asp-validation-for="AuteurId" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -58,5 +62,9 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+
+@* 👌😊 *@
