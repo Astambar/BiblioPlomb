@@ -24,7 +24,7 @@ namespace BiblioPlomb.Repositories
                 .FirstOrDefaultAsync(r => r.Type.ToLower() == type.ToLower());
         }
 
-        public async Task<IEnumerable<Role>> GetAllAsync()
+        public async Task<IEnumerable<Role>> GetAllRoleAsync()
         {
             return await _context.Roles.ToListAsync();
         }
@@ -32,14 +32,14 @@ namespace BiblioPlomb.Repositories
         public async Task<IEnumerable<Role>> SearchByTypeAsync(string searchPattern)
         {
             if (string.IsNullOrWhiteSpace(searchPattern))
-                return await GetAllAsync();
+                return await GetAllRoleAsync();
 
             return await _context.Roles
                 .Where(r => r.Type.ToLower().Contains(searchPattern.ToLower()))
                 .ToListAsync();
         }
 
-        public async Task<Role> AddAsync(Role role)
+        public async Task<Role> AddRoleAsync(Role role)
         {
             await _context.Roles.AddAsync(role);
             return role;
