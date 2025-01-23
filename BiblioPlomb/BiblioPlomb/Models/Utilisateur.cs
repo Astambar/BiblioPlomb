@@ -5,10 +5,10 @@ namespace BiblioPlomb.Models
     public class Utilisateur
     {
         public int Id { get; set; }
-        public string Nom { get; set; }
-        public string Prenom { get; set; }
-        public string Email { get; set; }
-        public string MotDePasse { get; set; }
-        public ICollection<UtilisateurRole> UtilisateurRoles { get; set; }
+        public string Nom { get; set; } = string.Empty; // Initialisation
+        public string Prenom { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string MotDePasse { get; set; } = string.Empty;
+        public ICollection<UtilisateurRole> UtilisateurRoles { get; set; } = new List<UtilisateurRole>();
     }
 }

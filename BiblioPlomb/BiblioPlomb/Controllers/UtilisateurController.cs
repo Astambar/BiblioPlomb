@@ -57,11 +57,11 @@ namespace BiblioPlomb.Controllers
             }
             catch (DbUpdateException dbEx)
             {
-                ModelState.AddModelError("", dbEx.InnerException?.Message);
+                ModelState.AddModelError("test", dbEx.InnerException?.Message ?? dbEx.Message);
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", ex.Message);
+                ModelState.AddModelError("test", ex.Message);
             }
 
             await LoadRolesInViewBag();
@@ -111,7 +111,7 @@ namespace BiblioPlomb.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var deletedId = await _utilisateurService.DeleteUtilisateurAsync(id);
-            if (deletedId == null)
+            if (!deletedId)
             {
                 return NotFound();
             }

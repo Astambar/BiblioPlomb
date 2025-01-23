@@ -61,7 +61,7 @@ namespace BiblioPlomb.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var deletedId = await _roleService.DeleteRoleAsync(id);
-            if (deletedId == null)
+            if (!deletedId)
             {
                 return NotFound();
             }

@@ -150,7 +150,8 @@ namespace BiblioPlomb.Repositories
 
         public async Task UpdateUtilisateurRoleAsync(UtilisateurRole utilisateurRole)
         {
-             _context.UtilisateurRoles.Update(utilisateurRole);
+            _context.UtilisateurRoles.Update(utilisateurRole);
+            await _context.SaveChangesAsync();
         }
 
         public async Task AddUtilisateurRoleAsync(UtilisateurRole utilisateurRole)
