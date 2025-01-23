@@ -20,7 +20,7 @@ namespace BiblioPlomb.Controllers
             return View(roles);
         }
 
-        // GET: Role/Details/5
+        // GET: Role/Details/id
         public async Task<IActionResult> Details(int id)
         {
             var role = await _roleService.GetRoleByIdAsync(id);
@@ -55,6 +55,18 @@ namespace BiblioPlomb.Controllers
                 ModelState.AddModelError("", ex.Message);
             }
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deletedId = await _roleService.DeleteRoleAsync(id);
+            if (deletedId == null)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

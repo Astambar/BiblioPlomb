@@ -57,10 +57,15 @@ namespace BiblioPlomb.Repositories
 
         public async Task<bool> DeleteRoleAsync(int id)
         {
-            var role = await GetRoleByIdAsync(id);
+            var role = await _context.Roles.FindAsync(id);
+            var utilisateurRoles = await _context.UtilisateurRoles.Where(ur => ur.RoleId == id).ToListAsync();
             if (role == null) return false;
-
+            if (utilisateurRoles.Count() >= 1)
+            {
+                _context.UtilisateurRoles.RemoveRange(utilisateurRoles);
+            }
             _context.Roles.Remove(role);
+            await _context.SaveChangesAsync();
             return true;
         }
 

@@ -142,7 +142,7 @@ namespace BiblioPlomb.Controllers
             return View(role);
         }
 
-        // GET: Roles/Delete/5
+        // GET: Roles/Delete/id
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
