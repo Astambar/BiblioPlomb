@@ -2,10 +2,11 @@
 {
     public class Emprunt
     {
-        public required int ID { get; set; }
-        public required int UserID { get; set; }
-        public required DateTime DateEmprunt { get; set; } = DateTime.Now;
-        public required DateTime DateRetour { get; set; }
+        public int Id { get; set; }
+        public ICollection<EmpruntRelation> EmpruntUtilisateurs { get; set; } = new List<EmpruntRelation>();
+        public ICollection<EmpruntRelation> EmpruntLivres { get; set; } = new List<EmpruntRelation>();
+        public DateTime DateEmprunt { get; set; } = DateTime.Now;
+        public DateTime DateRetour { get; set; }
 
     }
 }

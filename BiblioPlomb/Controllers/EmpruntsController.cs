@@ -35,7 +35,7 @@ namespace BiblioPlomb.Controllers
             }
 
             var emprunt = await _context.Emprunts
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (emprunt == null)
             {
                 return NotFound();
@@ -53,7 +53,7 @@ namespace BiblioPlomb.Controllers
         // POST: Emprunts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,UserID,DateEmprunt,DateRetour")] Emprunt emprunt)
+        public async Task<IActionResult> Create([Bind("ID,UtilisateurId,LivreId,DateEmprunt,DateRetour")] Emprunt emprunt)
         {
             if (ModelState.IsValid)
             {
@@ -83,9 +83,9 @@ namespace BiblioPlomb.Controllers
         // POST: Emprunts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,UserID,DateEmprunt,DateRetour")] Emprunt emprunt)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,UtilisateurId,LivreId,DateEmprunt,DateRetour")] Emprunt emprunt)
         {
-            if (id != emprunt.ID)
+            if (id != emprunt.Id)
             {
                 return NotFound();
             }
@@ -99,7 +99,7 @@ namespace BiblioPlomb.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmpruntExists(emprunt.ID))
+                    if (!EmpruntExists(emprunt.Id))
                     {
                         return NotFound();
                     }
@@ -122,7 +122,7 @@ namespace BiblioPlomb.Controllers
             }
 
             var emprunt = await _context.Emprunts
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (emprunt == null)
             {
                 return NotFound();
@@ -148,7 +148,7 @@ namespace BiblioPlomb.Controllers
 
         private bool EmpruntExists(int id)
         {
-            return _context.Emprunts.Any(e => e.ID == id);
+            return _context.Emprunts.Any(e => e.Id == id);
         }
     }
 }

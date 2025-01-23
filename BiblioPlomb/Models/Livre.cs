@@ -11,6 +11,8 @@ namespace BiblioPlomb.Models
 
     public class Livre
     {
+        internal readonly ICollection<EmpruntRelation> EmpruntLivres;
+
         public int Id { get; set; }
         public string Titre { get; set; } = string.Empty;
         public string Auteur { get; set; } = string.Empty;
@@ -21,5 +23,6 @@ namespace BiblioPlomb.Models
         public int AuteurId { get; set; }
         public Genre Genre { get; set; }
         public ICollection<AuteurLivre> AuteurLivres { get; set; } = new List<AuteurLivre>();
+
     }
 }

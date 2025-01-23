@@ -18,6 +18,7 @@ namespace BiblioPlomb.Data
         public DbSet<Utilisateur> Utilisateurs { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UtilisateurRole> UtilisateurRoles { get; set; }
+        public DbSet<EmpruntRelation> EmpruntRelations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -55,7 +56,19 @@ namespace BiblioPlomb.Data
                 .WithMany(r => r.UtilisateurRoles)
                 .HasForeignKey(ur => ur.RoleId);
 
+            // Configuration de la relation One-to-Many entre Emprunt et Livre et entre Emprunt et Utilisateur
+            modelBuilder.Entity<EmpruntRelation>()
+                .HasKey(er => new { er.LivreId, er.EmpruntId, er.UtilisateurId });
 
+            modelBuilder.Entity<EmpruntRelation>()
+                .HasOne(e => e.Emprunts)
+                .WithMany(er => er.EmpruntUtilisateurs)
+                .HasForeignKey(e => e.EmpruntId);
+
+            modelBuilder.Entity<EmpruntRelation>()
+                .HasOne(l => l.Livres)
+                .WithMany(er => er.EmpruntLivres)
+                .HasForeignKey(l => l.LivreId);
         }
     }
 }

@@ -4,10 +4,11 @@ namespace BiblioPlomb.DTO
 {
     public class EmpruntDTO
     {
-        public required int ID { get; set; }
-        public required int UserID { get; set; }
-        public required DateTime DateEmprunt { get; set; }
-        public required DateTime DateRetour { get; set; }
+        public int ID { get; set; }
+        public ICollection<EmpruntRelation> EmpruntUtilisateurs { get; set; }
+        public ICollection<EmpruntRelation> EmpruntLivres { get; set; }
+        public DateTime DateEmprunt { get; set; }
+        public DateTime DateRetour { get; set; }
 
 
 
@@ -15,8 +16,9 @@ namespace BiblioPlomb.DTO
 
         public EmpruntDTO(Emprunt emprunt)
         {
-            ID = emprunt.ID;
-            UserID = emprunt.UserID;
+            ID = emprunt.Id;
+            EmpruntUtilisateurs = emprunt.EmpruntUtilisateurs;
+            EmpruntLivres = emprunt.EmpruntLivres;
             DateEmprunt = emprunt.DateEmprunt;
             DateRetour = emprunt.DateRetour;
         }
