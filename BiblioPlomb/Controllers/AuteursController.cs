@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BiblioPlomb.Data;
 using BiblioPlomb.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BiblioPlomb.Controllers
 {
@@ -19,7 +20,7 @@ namespace BiblioPlomb.Controllers
             _context = context;
         }
 
-        // GET: Auteurs
+        // GET: Auteur
         public async Task<IActionResult> Index()
         {
             return View(await _context.Auteurs.ToListAsync());
@@ -44,28 +45,38 @@ namespace BiblioPlomb.Controllers
         }
 
         // GET: Auteurs/Create
-        public IActionResult Create()
+        public IActionResult Create(string nomAuteur, string returnUrl, string message)
         {
+            ViewBag.NomAuteur = nomAuteur;
+            ViewBag.ReturnUrl = returnUrl;
+            ViewBag.Message = message;
             return View();
         }
 
+
         // POST: Auteurs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nom")] Auteur auteur)
+        // [Bind] restreindre les propriétés de modèle qui sont mises à jour lors d'une opération de liaison modèle
+        // comme lors d'une soumission de formulaire.
+        public async Task<IActionResult> Create([Bind("Id,Nom, Prenom")] Auteur auteur, string returnUrl = null)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(auteur);
                 await _context.SaveChangesAsync();
+
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             return View(auteur);
         }
 
-        // GET: Auteurs/Edit/5
+        // GET: Auteurs/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,12 +92,10 @@ namespace BiblioPlomb.Controllers
             return View(auteur);
         }
 
-        // POST: Auteurs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Auteurs/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nom")] Auteur auteur)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nom ,Prenom")] Auteur auteur)
         {
             if (id != auteur.Id)
             {
@@ -116,7 +125,7 @@ namespace BiblioPlomb.Controllers
             return View(auteur);
         }
 
-        // GET: Auteurs/Delete/5
+        // GET: Auteurs/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +143,7 @@ namespace BiblioPlomb.Controllers
             return View(auteur);
         }
 
-        // POST: Auteurs/Delete/5
+        // POST: Auteurs/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

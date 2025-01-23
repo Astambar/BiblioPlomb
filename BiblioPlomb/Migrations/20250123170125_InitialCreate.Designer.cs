@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BiblioPlomb.Migrations
 {
     [DbContext(typeof(BiblioPlombDB))]
-    [Migration("20250123150547_InitialCreate")]
+    [Migration("20250123170125_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -27,6 +27,10 @@ namespace BiblioPlomb.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Prenom")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -181,6 +185,9 @@ namespace BiblioPlomb.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Utilisateurs");
                 });

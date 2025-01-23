@@ -17,7 +17,8 @@ namespace BiblioPlomb.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nom = table.Column<string>(type: "TEXT", nullable: false)
+                    Nom = table.Column<string>(type: "TEXT", nullable: false),
+                    Prenom = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -219,6 +220,12 @@ namespace BiblioPlomb.Migrations
                 name: "IX_UtilisateurRoles_RoleId",
                 table: "UtilisateurRoles",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Utilisateurs_Email",
+                table: "Utilisateurs",
+                column: "Email",
+                unique: true);
         }
 
         /// <inheritdoc />

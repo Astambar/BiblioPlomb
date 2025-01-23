@@ -24,7 +24,8 @@ namespace BiblioPlomb.Services
                 throw new ArgumentException("L'email ne peut pas être vide.", nameof(email));
             if (string.IsNullOrWhiteSpace(motDePasse))
                 throw new ArgumentException("Le mot de passe ne peut pas être vide.", nameof(motDePasse));
-
+            if (await _utilisateurRepository.ExistsUtilisateurByEmailAsync(email))
+                throw new InvalidOperationException($"Un email avec l'adresse '{email}' existe déjà.");
             var utilisateur = new Utilisateur
             {
                 Nom = nom,
@@ -33,7 +34,7 @@ namespace BiblioPlomb.Services
                 MotDePasse = motDePasse
             };
 
-            await _utilisateurRepository.AddAsync(utilisateur);
+            await _utilisateurRepository.AddRoleAsync(utilisateur);
             await _utilisateurRepository.SaveChangesAsync();
 
             // Associer les rôles sélectionnés à l'utilisateur
@@ -71,25 +72,37 @@ namespace BiblioPlomb.Services
         {
             var utilisateur = await _utilisateurRepository.GetByIdAsync(id);
             if (utilisateur == null)
+            {
+                Console.WriteLine("Utilisateur non trouvé pour l'ID : " + id);
                 throw new InvalidOperationException("L'utilisateur n'existe pas.");
+            }
 
             utilisateur.Nom = nom;
             utilisateur.Prenom = prenom;
             utilisateur.Email = email;
             utilisateur.MotDePasse = motdepasse;
+            if (await _utilisateurRepository.ExistsUtilisateurByEmailAsync(email))
+            {
+                Console.WriteLine("Email déjà utilisé par un autre utilisateur : " + email);
+                throw new InvalidOperationException($"Email déjà utilisé par un autre utilisateur: {email}.");
+            }
 
+            Console.WriteLine("Mise à jour des informations de l'utilisateur...");
             await _utilisateurRepository.UpdateUtilisateurAsync(utilisateur);
             await _utilisateurRepository.SaveChangesAsync();
+            Console.WriteLine("Informations de l'utilisateur mises à jour.");
 
-            // Gérer les rôles
+            // Gérer les rôles associés à l'utilisateur
             var utilisateurRoles = await _utilisateurRepository.GetUtilisateurRolesByUtilisateurIdAsync(id);
             var currentRoleIds = utilisateurRoles.Select(ur => ur.RoleId).ToList();
+            Console.WriteLine("Rôles actuels : " + string.Join(", ", currentRoleIds));
 
             // Supprimer les rôles décochés
             foreach (var roleId in currentRoleIds)
             {
                 if (!selectedRoles.Contains(roleId))
                 {
+                    Console.WriteLine("Suppression du rôle : " + roleId);
                     await _utilisateurRepository.DeleteUtilisateurRoleAsync(id, roleId);
                 }
             }
@@ -99,15 +112,18 @@ namespace BiblioPlomb.Services
             {
                 if (!currentRoleIds.Contains(roleId))
                 {
+                    Console.WriteLine("Ajout du rôle : " + roleId);
                     var utilisateurRole = new UtilisateurRole { UtilisateurId = id, RoleId = roleId };
                     await _utilisateurRepository.AddUtilisateurRoleAsync(utilisateurRole);
                 }
             }
 
             await _utilisateurRepository.SaveChangesAsync();
+            Console.WriteLine("Rôles mis à jour.");
 
             return utilisateur;
         }
+
 
         public async Task<bool> DeleteUtilisateurAsync(int id)
         {

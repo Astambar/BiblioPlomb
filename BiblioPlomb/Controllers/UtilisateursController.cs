@@ -18,7 +18,6 @@ namespace BiblioPlomb.Controllers
             _roleService = roleService;
         }
 
-
         public async Task<IActionResult> Index(string searchTerm)
         {
             var utilisateurs = string.IsNullOrWhiteSpace(searchTerm)
@@ -58,7 +57,7 @@ namespace BiblioPlomb.Controllers
             }
             catch (DbUpdateException dbEx)
             {
-                ModelState.AddModelError("", dbEx.InnerException?.Message);
+                ModelState.AddModelError("", dbEx.InnerException?.Message ?? dbEx.Message);
             }
             catch (Exception ex)
             {
@@ -68,6 +67,7 @@ namespace BiblioPlomb.Controllers
             await LoadRolesInViewBag();
             return View();
         }
+
 
         public async Task<IActionResult> Edit(int id)
         {
@@ -88,11 +88,12 @@ namespace BiblioPlomb.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    await _utilisateurService.UpdateUtilisateurAsync(id, nom, prenom, email, motdepasse, selectedRoles);
-                    return RedirectToAction(nameof(Index));
-                }
+                await _utilisateurService.UpdateUtilisateurAsync(id, nom, prenom, email, motdepasse, selectedRoles);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateException dbEx)
+            {
+                ModelState.AddModelError("", dbEx.InnerException?.Message ?? dbEx.Message);
             }
             catch (Exception ex)
             {
@@ -111,7 +112,7 @@ namespace BiblioPlomb.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var deletedId = await _utilisateurService.DeleteUtilisateurAsync(id);
-            if (deletedId == null)
+            if (!deletedId)
             {
                 return NotFound();
             }

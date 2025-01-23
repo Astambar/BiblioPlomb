@@ -25,7 +25,7 @@ namespace BiblioPlomb.Controllers
             return View(roles);
         }
 
-        // GET: Roles/Details/5
+        // GET: Roles/Details/id
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -76,13 +76,12 @@ namespace BiblioPlomb.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Une erreur s'est produite lors de la création du rôle. Veuillez réessayer.");
-                // Log l'erreur ici si nécessaire
+                ModelState.AddModelError($"Nature de l'erreur: {ex}", "Une erreur s'est produite lors de la création du rôle. Veuillez réessayer.");
             }
             return View(role);
         }
 
-        // GET: Roles/Edit/5
+        // GET: Roles/Edit/id
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -98,7 +97,7 @@ namespace BiblioPlomb.Controllers
             return View(role);
         }
 
-        // POST: Roles/Edit/5
+        // POST: Roles/Edit/id
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Type")] Role role)
@@ -142,7 +141,7 @@ namespace BiblioPlomb.Controllers
             return View(role);
         }
 
-        // GET: Roles/Delete/5
+        // GET: Roles/Delete/id
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -160,7 +159,7 @@ namespace BiblioPlomb.Controllers
             return View(role);
         }
 
-        // POST: Roles/Delete/5
+        // POST: Roles/Delete/id
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

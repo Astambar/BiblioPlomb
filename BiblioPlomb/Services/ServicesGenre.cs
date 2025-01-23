@@ -1,10 +1,12 @@
-﻿using BiblioPlomb.DTO;
+﻿using BiblioPlomb.Data;
+using BiblioPlomb.DTO;
 using BiblioPlomb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Linq;
-using BiblioPlomb.Data;
+//using BiblioPlomb.DTO;
+//using BiblioPlomb.Models;
 
 namespace BiblioPlomb.Services
 {
@@ -20,8 +22,11 @@ namespace BiblioPlomb.Services
         // Créer un genre
         public async Task<IResult> AddGenre(GenreDTO genreDTO)
         {
+            //List<Genre> listeGenre = new List<Genre>();            
+
             var genre = new Genre
             {
+
                 Nom = genreDTO.Nom
             };
 

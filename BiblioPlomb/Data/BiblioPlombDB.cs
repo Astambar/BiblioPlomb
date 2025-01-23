@@ -37,6 +37,8 @@ namespace BiblioPlomb.Data
                 .WithMany(livre => livre.AuteurLivres)
                 .HasForeignKey(auteurlivre => auteurlivre.LivreId);
 
+
+
             modelBuilder.Entity<Livre>()
                 .HasOne(livre => livre.Genre)
                 .WithMany(genre => genre.Livres)
@@ -55,6 +57,10 @@ namespace BiblioPlomb.Data
                 .HasOne(ur => ur.Role)
                 .WithMany(r => r.UtilisateurRoles)
                 .HasForeignKey(ur => ur.RoleId);
+
+            modelBuilder.Entity<Utilisateur>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
 
             // Configuration de la relation One-to-Many entre Emprunt et Livre et entre Emprunt et Utilisateur
             modelBuilder.Entity<EmpruntRelation>()
