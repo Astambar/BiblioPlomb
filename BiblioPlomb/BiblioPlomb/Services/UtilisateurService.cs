@@ -24,7 +24,8 @@ namespace BiblioPlomb.Services
                 throw new ArgumentException("L'email ne peut pas être vide.", nameof(email));
             if (string.IsNullOrWhiteSpace(motDePasse))
                 throw new ArgumentException("Le mot de passe ne peut pas être vide.", nameof(motDePasse));
-
+            if (await _utilisateurRepository.ExistsUtilisateurByEmailAsync(email))
+                throw new InvalidOperationException($"Un email avec l'adresse '{email}' existe déjà.");
             var utilisateur = new Utilisateur
             {
                 Nom = nom,
@@ -33,7 +34,7 @@ namespace BiblioPlomb.Services
                 MotDePasse = motDePasse
             };
 
-            await _utilisateurRepository.AddAsync(utilisateur);
+            await _utilisateurRepository.AddRoleAsync(utilisateur);
             await _utilisateurRepository.SaveChangesAsync();
 
             // Associer les rôles sélectionnés à l'utilisateur
@@ -80,6 +81,11 @@ namespace BiblioPlomb.Services
             utilisateur.Prenom = prenom;
             utilisateur.Email = email;
             utilisateur.MotDePasse = motdepasse;
+            if (await _utilisateurRepository.ExistsUtilisateurByEmailAsync(email))
+            {
+                Console.WriteLine("Email déjà utilisé par un autre utilisateur : " + email);
+                throw new InvalidOperationException($"Email déjà utilisé par un autre utilisateur.: {email}");
+            }
 
             Console.WriteLine("Mise à jour des informations de l'utilisateur...");
             await _utilisateurRepository.UpdateUtilisateurAsync(utilisateur);

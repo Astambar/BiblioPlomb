@@ -57,16 +57,17 @@ namespace BiblioPlomb.Controllers
             }
             catch (DbUpdateException dbEx)
             {
-                ModelState.AddModelError("test", dbEx.InnerException?.Message ?? dbEx.Message);
+                ModelState.AddModelError("", dbEx.InnerException?.Message ?? dbEx.Message);
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("test", ex.Message);
+                ModelState.AddModelError("", ex.Message);
             }
 
             await LoadRolesInViewBag();
             return View();
         }
+
 
         public async Task<IActionResult> Edit(int id)
         {

@@ -48,8 +48,12 @@ namespace BiblioPlomb.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Utilisateur> AddAsync(Utilisateur utilisateur)
+        public async Task<Utilisateur> AddRoleAsync(Utilisateur utilisateur)
         {
+            if (await _context.Utilisateurs.AnyAsync(u => u.Email == utilisateur.Email))
+            {
+                throw new Exception("Email déjà utilisé.");
+            }
             await _context.Utilisateurs.AddAsync(utilisateur);
             return utilisateur;
         }
@@ -64,6 +68,10 @@ namespace BiblioPlomb.Repositories
             existingUser.Email = utilisateur.Email;
             existingUser.MotDePasse = utilisateur.MotDePasse; // Assurez-vous de gérer le hachage
 
+            if (await _context.Utilisateurs.AnyAsync(u => u.Email == utilisateur.Email && u.Id != utilisateur.Id))
+            {
+                throw new Exception("Email déjà utilisé par un autre utilisateur.");
+            }
             _context.Utilisateurs.Update(existingUser);
 
             await _context.SaveChangesAsync();
@@ -158,7 +166,7 @@ namespace BiblioPlomb.Repositories
         {
             await _context.UtilisateurRoles.AddAsync(utilisateurRole);
         }
-
+        
         public async Task<Utilisateur> CreateUtilisateurAsync(string nom, string prenom, string email, string motDePasse, int roleId)
         {
             var utilisateur = new Utilisateur
@@ -174,5 +182,7 @@ namespace BiblioPlomb.Repositories
 
             return utilisateur;
         }
+        public async Task<bool> ExistsUtilisateurByEmailAsync(string email) => await _context.Utilisateurs
+                .AnyAsync(u => u.Email == email);
     }
 }

@@ -30,6 +30,10 @@ namespace BiblioPlomb.Data
                 .WithMany(r => r.UtilisateurRoles)
                 .HasForeignKey(ur => ur.RoleId);
 
+            modelBuilder.Entity<Utilisateur>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+
             base.OnModelCreating(modelBuilder);
         }
     }
