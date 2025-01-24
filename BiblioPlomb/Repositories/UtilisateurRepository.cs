@@ -36,17 +36,18 @@ namespace BiblioPlomb.Repositories
 
             searchTerm = searchTerm.ToLower();
 
-            return await _context.UtilisateurRoles
-                .Include(ur => ur.Utilisateur)
-                .Include(ur => ur.Role)
-                .Where(ur => ur.Utilisateur.Nom.ToLower().Contains(searchTerm) ||
-                             ur.Utilisateur.Prenom.ToLower().Contains(searchTerm) ||
-                             ur.Utilisateur.Email.ToLower().Contains(searchTerm) ||
-                             ur.Role.Type.ToLower().Contains(searchTerm))
-                .Select(ur => ur.Utilisateur)
-                .Distinct()
+            return await _context.Utilisateurs
+                .Include(utilisateur => utilisateur.UtilisateurRoles)
+                .ThenInclude(ur => ur.Role)
+                .Where(utilisateur =>
+                    utilisateur.Nom.ToLower().Contains(searchTerm) ||
+                    utilisateur.Prenom.ToLower().Contains(searchTerm) ||
+                    utilisateur.Email.ToLower().Contains(searchTerm) ||
+                    utilisateur.UtilisateurRoles.Any(ur => ur.Role.Type.ToLower().Contains(searchTerm))
+                )
                 .ToListAsync();
         }
+
 
         public async Task<Utilisateur> AddRoleAsync(Utilisateur utilisateur)
         {

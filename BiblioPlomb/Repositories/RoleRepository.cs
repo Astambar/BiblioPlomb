@@ -29,13 +29,17 @@ namespace BiblioPlomb.Repositories
             return await _context.Roles.ToListAsync();
         }
 
+
         public async Task<IEnumerable<Role>> SearchByTypeAsync(string searchPattern)
         {
             if (string.IsNullOrWhiteSpace(searchPattern))
-                return await GetAllRoleAsync();
+                return await GetAllRoleAsync(); // Retourne tous les rôles si le modèle de recherche est vide
 
+            searchPattern = searchPattern.ToLower();
+
+            // Recherche les rôles dont le type contient le modèle de recherche (insensible à la casse)
             return await _context.Roles
-                .Where(r => r.Type.ToLower().Contains(searchPattern.ToLower()))
+                .Where(r => r.Type.ToLower().Contains(searchPattern))
                 .ToListAsync();
         }
 

@@ -7,15 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BiblioPlomb.Data;
 using BiblioPlomb.Models;
+using BiblioPlomb.Services;
 
 namespace BiblioPlomb.Controllers
 {
     public class EmpruntsController : Controller
     {
         private readonly BiblioPlombDB _context;
+        private readonly IUtilisateurService _utilisateurService;
 
-        public EmpruntsController(BiblioPlombDB context)
+
+
+        public EmpruntsController(IUtilisateurService utilisateurService, BiblioPlombDB context)
         {
+            _utilisateurService = utilisateurService;
             _context = context;
         }
 
@@ -149,5 +154,6 @@ namespace BiblioPlomb.Controllers
         {
             return _context.Emprunts.Any(e => e.Id == id);
         }
+
     }
 }

@@ -43,7 +43,7 @@ namespace BiblioPlomb.Controllers
             return View();
         }
 
-        [HttpPost("Utilisateur/Create")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(string nom, string prenom, string email, string motDePasse, int[] selectedRoles)
         {
@@ -82,7 +82,7 @@ namespace BiblioPlomb.Controllers
             return View(utilisateur);
         }
 
-        [HttpPost("Utilisateur/Edit/{id}")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, string nom, string prenom, string email, string motdepasse, int[] selectedRoles)
         {
@@ -107,7 +107,7 @@ namespace BiblioPlomb.Controllers
             return View();
         }
 
-        [HttpPost("Utilisateur/Delete/{id}")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {

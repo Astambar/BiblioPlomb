@@ -14,9 +14,13 @@ namespace BiblioPlomb.Controllers
         }
 
         // GET: Role
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchTerm)
         {
-            var roles = await _roleService.GetAllRolesAsync();
+            var roles = string.IsNullOrWhiteSpace(searchTerm)
+            ? await _roleService.GetAllRolesAsync()
+            : await _roleService.SearchRolesByTypeAsync(searchTerm);
+
+            ViewBag.SearchTerm = searchTerm;
             return View(roles);
         }
 
@@ -38,7 +42,7 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Role/Create
-        [HttpPost("Role/Create")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Type")] string type)
         {
@@ -56,7 +60,7 @@ namespace BiblioPlomb.Controllers
             }
             return View();
         }
-        [HttpPost("Role/Delete/{id}")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
