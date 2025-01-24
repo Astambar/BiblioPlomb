@@ -1,4 +1,4 @@
-﻿@model BiblioPlomb.Models.Utilisateur
+@model BiblioPlomb.Models.Utilisateur
 
 @{
     ViewData["Title"] = "Créer un utilisateur";
@@ -76,7 +76,5 @@
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

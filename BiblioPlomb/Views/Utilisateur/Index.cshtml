@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BiblioPlomb.Models.Utilisateur>
+@model IEnumerable<BiblioPlomb.Models.Utilisateur>
 
 @{
     ViewData["Title"] = "Liste des utilisateurs";
@@ -43,9 +43,7 @@
                     {
                         foreach (var utilisateurRole in item.UtilisateurRoles)
                         {
-                            <span>@utilisateurRole.Role.Type</span>
-
-                            <br />
+                            <span>@utilisateurRole.Role.Type</span><br />
                         }
                     }
                     else

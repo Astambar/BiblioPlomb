@@ -6,9 +6,9 @@ namespace BiblioPlomb.Controllers
 {
     public class RoleController : Controller
     {
-        private readonly IServiceRole _roleService;
+        private readonly IRoleService _roleService;
 
-        public RoleController(IServiceRole roleService)
+        public RoleController(IRoleService roleService)
         {
             _roleService = roleService;
         }

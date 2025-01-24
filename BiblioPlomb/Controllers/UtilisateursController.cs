@@ -9,10 +9,10 @@ namespace BiblioPlomb.Controllers
 {
     public class UtilisateurController : Controller
     {
-        private readonly IServiceUtilisateur _utilisateurService;
-        private readonly IServiceRole _roleService;
+        private readonly IUtilisateurService _utilisateurService;
+        private readonly IRoleService _roleService;
 
-        public UtilisateurController(IServiceUtilisateur utilisateurService, IServiceRole roleService)
+        public UtilisateurController(IUtilisateurService utilisateurService, IRoleService roleService)
         {
             _utilisateurService = utilisateurService;
             _roleService = roleService;
