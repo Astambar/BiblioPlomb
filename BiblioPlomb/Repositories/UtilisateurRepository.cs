@@ -182,6 +182,12 @@ namespace BiblioPlomb.Repositories
 
             return utilisateur;
         }
+
+        public async Task<Utilisateur?> GetUtilisateurByEmailAsync(string email)
+        {
+            return await _context.Utilisateurs.FirstOrDefaultAsync(u => u.Email == email);
+        }
+
         public async Task<bool> ExistsUtilisateurByEmailAsync(string email) => await _context.Utilisateurs
                 .AnyAsync(u => u.Email == email);
     }

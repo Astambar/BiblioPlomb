@@ -12,5 +12,7 @@ namespace BiblioPlomb.Services
         Task<bool> DeleteUtilisateurAsync(int id);
         Task<IEnumerable<Role>> GetRolesByUtilisateurIdAsync(int utilisateurId);
         Task<IEnumerable<UtilisateurRole>> GetUtilisateurRolesByUtilisateurIdAsync(int utilisateurId);
+        Task<Utilisateur?> AuthenticateAsync(string email, string motDePasse);
+        Task<Utilisateur?> GetUtilisateurByEmailAsync(string email);
     }
 }

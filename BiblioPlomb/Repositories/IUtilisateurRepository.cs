@@ -18,5 +18,6 @@ namespace BiblioPlomb.Repositories
         Task AddUtilisateurRoleAsync(UtilisateurRole utilisateurRole);
         Task<Utilisateur> CreateUtilisateurAsync(string nom, string prenom, string email, string motDePasseHash, int roleId);
         Task<bool> ExistsUtilisateurByEmailAsync(string email);
+        Task<Utilisateur?> GetUtilisateurByEmailAsync(string email);
     }
 }

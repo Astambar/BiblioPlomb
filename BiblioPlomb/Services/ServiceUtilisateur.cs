@@ -124,6 +124,18 @@ namespace BiblioPlomb.Services
             return utilisateur;
         }
 
+        public async Task<Utilisateur?> AuthenticateAsync(string email, string motDePasse)
+        {
+            var utilisateur = await GetUtilisateurByEmailAsync(email);
+            if (utilisateur == null || utilisateur.MotDePasse != motDePasse)
+                return null;
+            return utilisateur;
+        }
+
+        public async Task<Utilisateur?> GetUtilisateurByEmailAsync(string email)
+        {
+            return await _utilisateurRepository.GetUtilisateurByEmailAsync(email);
+        }
 
         public async Task<bool> DeleteUtilisateurAsync(int id)
         {

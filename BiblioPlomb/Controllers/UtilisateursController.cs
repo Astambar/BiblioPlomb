@@ -139,6 +139,28 @@ namespace BiblioPlomb.Controllers
             return Ok(roles);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(string email, string motDePasse)
+        {
+            var utilisateur = await _utilisateurService.AuthenticateAsync(email, motDePasse);
+            if (utilisateur == null)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return View();
+            }
+
+            // Store user information in session
+            HttpContext.Session.SetString("UserEmail", utilisateur.Email);
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("UserEmail");
+            return RedirectToAction("Index", "Home");
+        }
+
         private async Task LoadRolesInViewBag()
         {
             var roles = await _roleService.GetAllRolesAsync();
