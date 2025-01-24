@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BiblioPlomb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1ea11f49d7b9ef7b141fe5e6c7e6e17090bca14d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a1e9480e37c9c0318e7443a3905c16201d83e941")]
 [assembly: System.Reflection.AssemblyProductAttribute("BiblioPlomb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BiblioPlomb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -36,23 +36,24 @@ namespace BiblioPlomb.Repositories
 
             searchTerm = searchTerm.ToLower();
 
-            return await _context.UtilisateurRoles
-                .Include(ur => ur.Utilisateur)
-                .Include(ur => ur.Role)
-                .Where(ur => ur.Utilisateur.Nom.ToLower().Contains(searchTerm) ||
-                             ur.Utilisateur.Prenom.ToLower().Contains(searchTerm) ||
-                             ur.Utilisateur.Email.ToLower().Contains(searchTerm) ||
-                             ur.Role.Type.ToLower().Contains(searchTerm))
-                .Select(ur => ur.Utilisateur)
-                .Distinct()
+            return await _context.Utilisateurs
+                .Include(utilisateur => utilisateur.UtilisateurRoles)
+                .ThenInclude(ur => ur.Role)
+                .Where(utilisateur =>
+                    utilisateur.Nom.ToLower().Contains(searchTerm) ||
+                    utilisateur.Prenom.ToLower().Contains(searchTerm) ||
+                    utilisateur.Email.ToLower().Contains(searchTerm) ||
+                    utilisateur.UtilisateurRoles.Any(ur => ur.Role.Type.ToLower().Contains(searchTerm))
+                )
                 .ToListAsync();
         }
+
 
         public async Task<Utilisateur> AddRoleAsync(Utilisateur utilisateur)
         {
             if (await _context.Utilisateurs.AnyAsync(u => u.Email == utilisateur.Email))
             {
-                throw new Exception("Email déjà utilisé.");
+                throw new Exception("Email d�j� utilis�.");
             }
             await _context.Utilisateurs.AddAsync(utilisateur);
             return utilisateur;
@@ -66,7 +67,7 @@ namespace BiblioPlomb.Repositories
             existingUser.Nom = utilisateur.Nom;
             existingUser.Prenom = utilisateur.Prenom;
             existingUser.Email = utilisateur.Email;
-            existingUser.MotDePasse = utilisateur.MotDePasse; // Assurez-vous de gérer le hachage
+            existingUser.MotDePasse = utilisateur.MotDePasse; // Assurez-vous de g�rer le hachage
 
             if (await _context.Utilisateurs.AnyAsync(u => u.Email == utilisateur.Email && u.Id != utilisateur.Id))
             {
@@ -81,21 +82,21 @@ namespace BiblioPlomb.Repositories
 
         public async Task<Utilisateur?> UpdateUtilisateurAndRolesAsync(Utilisateur utilisateur, int[] selectedRoles)
         {
-            // Récupérer l'utilisateur existant avec ses rôles
+            // R�cup�rer l'utilisateur existant avec ses r�les
             var existingUser = await GetByIdAsync(utilisateur.Id);
             if (existingUser == null)
             {
                 return null;
             }
 
-            // Mettre à jour les propriétés de l'utilisateur
+            // Mettre � jour les propri�t�s de l'utilisateur
             _context.Entry(existingUser).CurrentValues.SetValues(utilisateur);
 
-            // Mettre à jour les rôles associés à l'utilisateur
+            // Mettre � jour les r�les associ�s � l'utilisateur
             var currentRoles = await GetUtilisateurRolesByUtilisateurIdAsync(utilisateur.Id);
             var currentRoleIds = currentRoles.Select(ur => ur.RoleId).ToList();
 
-            // Supprimer les rôles décochés
+            // Supprimer les r�les d�coch�s
             foreach (var roleId in currentRoleIds)
             {
                 if (!selectedRoles.Contains(roleId))
@@ -104,7 +105,7 @@ namespace BiblioPlomb.Repositories
                 }
             }
 
-            // Ajouter les nouveaux rôles
+            // Ajouter les nouveaux r�les
             foreach (var roleId in selectedRoles)
             {
                 if (!currentRoleIds.Contains(roleId))

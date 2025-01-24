@@ -2,7 +2,7 @@
 
 namespace BiblioPlomb.Services
 {
-    public interface IServiceRole
+    public interface IRoleService
     {
         Task<Role> CreateRoleAsync(string type);
         Task<Role?> GetRoleByTypeAsync(string type);

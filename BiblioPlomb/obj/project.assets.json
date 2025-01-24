@@ -7033,11 +7033,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Utilisateur\\Desktop\\Programmation\\Hotfix\\BiblioPlomb\\BiblioPlomb\\BiblioPlomb.csproj",
+      "projectUniqueName": "C:\\Environement_Programation\\repo_groupe\\SafeClone\\BiblioPlomb\\BiblioPlomb\\BiblioPlomb.csproj",
       "projectName": "BiblioPlomb",
-      "projectPath": "C:\\Users\\Utilisateur\\Desktop\\Programmation\\Hotfix\\BiblioPlomb\\BiblioPlomb\\BiblioPlomb.csproj",
+      "projectPath": "C:\\Environement_Programation\\repo_groupe\\SafeClone\\BiblioPlomb\\BiblioPlomb\\BiblioPlomb.csproj",
       "packagesPath": "C:\\Users\\Utilisateur\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Utilisateur\\Desktop\\Programmation\\Hotfix\\BiblioPlomb\\BiblioPlomb\\obj\\",
+      "outputPath": "C:\\Environement_Programation\\repo_groupe\\SafeClone\\BiblioPlomb\\BiblioPlomb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7052,7 +7052,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7133,7 +7132,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

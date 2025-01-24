@@ -5,11 +5,11 @@ using BiblioPlomb.Repositories;
 
 namespace BiblioPlomb.Services
 {
-    public class ServiceRole : IServiceRole
+    public class RoleService : IRoleService
     {
         private readonly IRoleRepository _roleRepository;
 
-        public ServiceRole(IRoleRepository roleRepository)
+        public RoleService(IRoleRepository roleRepository)
         {
             _roleRepository = roleRepository;
         }
@@ -23,7 +23,7 @@ namespace BiblioPlomb.Services
                 throw new InvalidOperationException($"Un rôle avec le type '{type}' existe déjà.");
 
             var role = new Role { Type = type };
-            await _roleRepository.AddAsync(role);
+            await _roleRepository.AddRoleAsync(role);
             await _roleRepository.SaveChangesAsync();
 
             return role;
@@ -35,12 +35,13 @@ namespace BiblioPlomb.Services
         }
 
         public async Task<Role?> GetRoleByIdAsync(int id)
-        {return await _roleRepository.GetRoleByIdAsync(id);
+        {
+            return await _roleRepository.GetRoleByIdAsync(id);
         }
 
         public async Task<IEnumerable<Role>> GetAllRolesAsync()
         {
-            return await _roleRepository.GetAllAsync();
+            return await _roleRepository.GetAllRoleAsync();
         }
 
         public async Task<IEnumerable<Role>> SearchRolesByTypeAsync(string searchPattern)

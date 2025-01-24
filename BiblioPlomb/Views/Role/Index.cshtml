@@ -9,10 +9,7 @@
 <div class="row mb-3">
     <div class="col-md-6">
         <div class="input-group">
-            <input type="text" id="searchInput" class="form-control" placeholder="Rechercher un rôle...">
-            <div class="input-group-append">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-            </div>
+            <input type="text" id="searchInput" class="form-control" placeholder="Rechercher un rôle..." value="@ViewBag.SearchTerm">
         </div>
     </div>
     <div class="col-md-6 text-right">
@@ -80,8 +77,8 @@
             const searchValue = e.target.value;
 
             searchTimeout = setTimeout(() => {
-                performSearch(searchValue);
-            }, 300);
+                window.location.href = `/Role/Index?searchTerm=${encodeURIComponent(searchValue)}`;
+            }, 500);
         });
 
         async function performSearch(query) {

@@ -6,9 +6,9 @@ namespace BiblioPlomb.Repositories
     {
         Task<Role?> GetRoleByIdAsync(int id);
         Task<Role?> GetByTypeAsync(string type);
-        Task<IEnumerable<Role>> GetAllAsync();
+        Task<IEnumerable<Role>> GetAllRoleAsync();
         Task<IEnumerable<Role>> SearchByTypeAsync(string searchPattern);
-        Task<Role> AddAsync(Role role);
+        Task<Role> AddRoleAsync(Role role);
         Task<Role?> UpdateRoleAsync(Role role);
         Task<bool> DeleteRoleAsync(int id);
         Task<bool> ExistsRoleByTypeAsync(string type);

@@ -3,12 +3,12 @@ using BiblioPlomb.Repositories;
 
 namespace BiblioPlomb.Services
 {
-    public class ServiceUtilisateur : IServiceUtilisateur
+    public class UtilisateurService : IUtilisateurService
     {
         private readonly IUtilisateurRepository _utilisateurRepository;
         private readonly IRoleRepository _roleRepository;
 
-        public ServiceUtilisateur(IUtilisateurRepository utilisateurRepository, IRoleRepository roleRepository)
+        public UtilisateurService(IUtilisateurRepository utilisateurRepository, IRoleRepository roleRepository)
         {
             _utilisateurRepository = utilisateurRepository;
             _roleRepository = roleRepository;
@@ -84,7 +84,7 @@ namespace BiblioPlomb.Services
             if (await _utilisateurRepository.ExistsUtilisateurByEmailAsync(email))
             {
                 Console.WriteLine("Email déjà utilisé par un autre utilisateur : " + email);
-                throw new InvalidOperationException($"Email déjà utilisé par un autre utilisateur: {email}.");
+                throw new InvalidOperationException($"Email déjà utilisé par un autre utilisateur.: {email}");
             }
 
             Console.WriteLine("Mise à jour des informations de l'utilisateur...");

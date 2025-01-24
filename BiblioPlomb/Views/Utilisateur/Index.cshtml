@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BiblioPlomb.Models.Utilisateur>
+@model IEnumerable<BiblioPlomb.Models.Utilisateur>
 
 @{
     ViewData["Title"] = "Liste des utilisateurs";
@@ -11,9 +11,6 @@
         <div class="input-group">
             <input type="text" id="searchInput" class="form-control" placeholder="Rechercher un utilisateur..."
                    value="@ViewBag.SearchTerm">
-            <div class="input-group-append">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-            </div>
         </div>
     </div>
     <div class="col-md-6 text-right">
@@ -43,9 +40,7 @@
                     {
                         foreach (var utilisateurRole in item.UtilisateurRoles)
                         {
-                            <span>@utilisateurRole.Role.Type</span>
-
-                            <br />
+                            <span>@utilisateurRole.Role.Type</span><br />
                         }
                     }
                     else
@@ -55,7 +50,6 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Modifier</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Détails</a>
                     <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;">
                         @Html.AntiForgeryToken()
                         <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>

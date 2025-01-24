@@ -15,16 +15,13 @@ builder.Services.AddControllers(); // Important pour les API
 builder.Services.AddControllersWithViews();
 
 // Register Role Service and Repository
-builder.Services.AddScoped<IServiceRole, ServiceRole>();
+builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 
 // Register User Service and Repository
-builder.Services.AddScoped<IServiceUtilisateur, ServiceUtilisateur>();
+builder.Services.AddScoped<IUtilisateurService, UtilisateurService>();
 builder.Services.AddScoped<IUtilisateurRepository, UtilisateurRepository>();
 
-// Register User Service and Repository
-builder.Services.AddScoped<IServiceUtilisateur, ServiceUtilisateur>();
-builder.Services.AddScoped<IUtilisateurRepository, UtilisateurRepository>();
 
 // Ajout des services Livre et Genre
 builder.Services.AddScoped<ServiceLivre>();

@@ -2,7 +2,7 @@
 
 namespace BiblioPlomb.Services
 {
-    public interface IServiceUtilisateur
+    public interface IUtilisateurService
     {
         Task<Utilisateur> CreateUtilisateurAsync(string nom, string prenom, string email, string motDePasse, int[] selectedRoles);
         Task<Utilisateur?> GetUtilisateurByIdAsync(int id);

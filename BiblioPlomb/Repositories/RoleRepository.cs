@@ -24,22 +24,26 @@ namespace BiblioPlomb.Repositories
                 .FirstOrDefaultAsync(r => r.Type.ToLower() == type.ToLower());
         }
 
-        public async Task<IEnumerable<Role>> GetAllAsync()
+        public async Task<IEnumerable<Role>> GetAllRoleAsync()
         {
             return await _context.Roles.ToListAsync();
         }
 
+
         public async Task<IEnumerable<Role>> SearchByTypeAsync(string searchPattern)
         {
             if (string.IsNullOrWhiteSpace(searchPattern))
-                return await GetAllAsync();
+                return await GetAllRoleAsync(); // Retourne tous les rôles si le modèle de recherche est vide
 
+            searchPattern = searchPattern.ToLower();
+
+            // Recherche les rôles dont le type contient le modèle de recherche (insensible à la casse)
             return await _context.Roles
-                .Where(r => r.Type.ToLower().Contains(searchPattern.ToLower()))
+                .Where(r => r.Type.ToLower().Contains(searchPattern))
                 .ToListAsync();
         }
 
-        public async Task<Role> AddAsync(Role role)
+        public async Task<Role> AddRoleAsync(Role role)
         {
             await _context.Roles.AddAsync(role);
             return role;
@@ -57,10 +61,15 @@ namespace BiblioPlomb.Repositories
 
         public async Task<bool> DeleteRoleAsync(int id)
         {
-            var role = await GetRoleByIdAsync(id);
+            var role = await _context.Roles.FindAsync(id);
+            var utilisateurRoles = await _context.UtilisateurRoles.Where(ur => ur.RoleId == id).ToListAsync();
             if (role == null) return false;
-
+            if (utilisateurRoles.Count() >= 1)
+            {
+                _context.UtilisateurRoles.RemoveRange(utilisateurRoles);
+            }
             _context.Roles.Remove(role);
+            await _context.SaveChangesAsync();
             return true;
         }
 
