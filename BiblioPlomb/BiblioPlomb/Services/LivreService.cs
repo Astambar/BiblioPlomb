@@ -3,6 +3,7 @@ using BiblioPlomb.DTO;
 using BiblioPlomb.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BiblioPlomb.Services
@@ -129,6 +130,41 @@ namespace BiblioPlomb.Services
             await _db.SaveChangesAsync();
             return TypedResults.Ok(livre);
         }
+
+        //public async Task ImporJsonLivres(string filePath)
+        //{
+        //    if (string.IsNullOrEmpty(filePath) || !File.Exists(filePath))
+        //    {
+        //        throw new FileNotFoundException($"Le fichier spécifié est introuvable : {filePath}");
+        //    }
+
+        //    try
+        //    {
+        //        // Lire le contenu du fichier JSON
+        //        var jsonData = await File.ReadAllTextAsync(filePath);
+
+        //        // Désérialiser les données JSON en une liste d'objets
+        //        var livres = JsonSerializer.Deserialize<List<Livre>>(jsonData, new JsonSerializerOptions
+        //        {
+        //            PropertyNameCaseInsensitive = true // Pour ignorer la casse dans les noms de propriétés JSON
+        //        });
+
+        //        if (livres != null && livres.Any())
+        //        {
+        //            // Ajouter les livres dans la base de données
+        //            _db.Livres.AddRange(livres);
+
+        //            // Sauvegarder les changements
+        //            await _db.SaveChangesAsync();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Gérer les erreurs
+        //        Console.WriteLine($"Erreur lors de l'importation du fichier JSON : {ex.Message}");
+        //        throw;
+        //    }
+        //}
 
     }
 }

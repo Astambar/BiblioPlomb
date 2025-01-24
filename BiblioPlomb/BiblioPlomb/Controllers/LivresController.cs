@@ -198,17 +198,17 @@ namespace BiblioPlomb.Controllers
         public async Task<IActionResult> Rechercher(string searchQuery)
         {
             var livres = await _context.Livres
-                .Include(l => l.AuteurLivres)
+                .Include(livre => livre.AuteurLivres)
                     .ThenInclude(al => al.Auteur)
-                .Include(l => l.Genre)
-                .Where(l => l.Titre.Contains(searchQuery) ||
-                            l.AuteurLivres.Any(al => al.Auteur.Nom.Contains(searchQuery)))
+                .Include(livre => livre.Genre)
+                .Where(livre => livre.Titre.Contains(searchQuery) ||
+                            livre.AuteurLivres.Any(al => al.Auteur.Nom.Contains(searchQuery)))
                 .ToListAsync();
 
-            var livresDto = livres.Select(l => new AuteursLivresDTO
+            var livresDto = livres.Select(livre => new AuteursLivresDTO
             {
-                LivreTitre = l.Titre,
-                AuteurNom = string.Join(", ", l.AuteurLivres.Select(al => al.Auteur.Nom))
+                LivreTitre = livre.Titre,
+                AuteurNom = string.Join(", ", livre.AuteurLivres.Select(al => al.Auteur.Nom))
             }).ToList();
 
             return PartialView("RechercheLi_Au", livresDto);

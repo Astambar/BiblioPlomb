@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BiblioPlombTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d45516b70fa5f178f98c83fb3986da5fde77e288")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ef840ac5bd460b6a9314d718ddc4ee58b6a3500")]
 [assembly: System.Reflection.AssemblyProductAttribute("BiblioPlombTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BiblioPlombTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -345,8 +345,6 @@ C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPl
 C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\compressed\cczicb5u1o-9vr69e8ynj.gz
 C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\compressed\n8k04tehly-87fc7y1x7t.gz
 C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\compressed\dhcctrsczj-mlv21k5csn.gz
-C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\compressed\824flwm9k1-25ffvfmcpj.gz
-C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\compressed\ixy16pjro0-25ffvfmcpj.gz
 C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\staticwebassets.build.endpoints.json
@@ -363,3 +361,6 @@ C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPl
 C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\BiblioPlomb.pdb
 C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\BiblioPlomb.genruntimeconfig.cache
 C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\ref\BiblioPlomb.dll
+C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\compressed\824flwm9k1-25ffvfmcpj.gz
+C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\compressed\ixy16pjro0-25ffvfmcpj.gz
+C:\Users\2ki\OneDrive\Bureau\Simplon.NET\Projet_BiblioPlomb\BiblioPlomb\BiblioPlomb\BiblioPlomb\obj\Debug\net9.0\compressed\5v05q4weqt-az5z5ux86e.gz
