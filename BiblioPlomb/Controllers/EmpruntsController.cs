@@ -20,7 +20,6 @@ namespace BiblioPlomb.Controllers
         }
 
         // GET: Emprunts
-        
         public async Task<IActionResult> Index()
         {
             return View(await _context.Emprunts.ToListAsync());
@@ -51,9 +50,9 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Emprunts/Create
-        [HttpPost]
+        [HttpPost("Emprunts/Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,UtilisateurId,LivreId,DateEmprunt,DateRetour")] Emprunt emprunt)
+        public async Task<IActionResult> Create([Bind("Id,DateEmprunt,DateRetour")] Emprunt emprunt)
         {
             if (ModelState.IsValid)
             {
@@ -81,9 +80,9 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Emprunts/Edit/5
-        [HttpPost]
+        [HttpPost("Emprunts/Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,UtilisateurId,LivreId,DateEmprunt,DateRetour")] Emprunt emprunt)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DateEmprunt,DateRetour")] Emprunt emprunt)
         {
             if (id != emprunt.Id)
             {
@@ -132,7 +131,7 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Emprunts/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("Emprunts/Delete/{id}"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

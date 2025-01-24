@@ -52,7 +52,7 @@ namespace BiblioPlomb.Controllers
         // POST: Genres/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("Genres/Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nom")] Genre genre)
         {
@@ -84,7 +84,7 @@ namespace BiblioPlomb.Controllers
         // POST: Genres/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("Genres/Edit/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nom")] Genre genre)
         {
@@ -135,7 +135,7 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Genres/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("Genres/Delete/{id}"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

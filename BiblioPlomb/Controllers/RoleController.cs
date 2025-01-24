@@ -38,7 +38,7 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Role/Create
-        [HttpPost]
+        [HttpPost("Role/Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Type")] string type)
         {
@@ -56,7 +56,7 @@ namespace BiblioPlomb.Controllers
             }
             return View();
         }
-        [HttpPost]
+        [HttpPost("Role/Delete/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {

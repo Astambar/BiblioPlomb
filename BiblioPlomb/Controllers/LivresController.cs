@@ -56,7 +56,7 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Livres/Create
-        [HttpPost]
+        [HttpPost("Livres/Create")]
         public async Task<IActionResult> Create(Livre livre)
         {
             var auteur = await _context.Auteurs.FirstOrDefaultAsync(auteur => auteur.Nom == livre.Auteur);
@@ -105,7 +105,7 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Livres/Edit/
-        [HttpPost]
+        [HttpPost("Livres/Edit/{id}")]
         public async Task<IActionResult> Edit(int id, Livre livre)
         {
             ModelState.Clear();
@@ -140,7 +140,7 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Livres/Delete
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("Livres/Delete/{id}"), ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var livre = await _context.Livres.FindAsync(id);
@@ -194,7 +194,7 @@ namespace BiblioPlomb.Controllers
         }
 
         // GET: Livres/Rechercher
-        [HttpGet]
+        [HttpGet("Livres/Rechercher")]
         public async Task<IActionResult> Rechercher(string searchQuery)
         {
             var livres = await _context.Livres

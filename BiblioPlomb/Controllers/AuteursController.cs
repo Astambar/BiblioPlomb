@@ -55,7 +55,7 @@ namespace BiblioPlomb.Controllers
 
 
         // POST: Auteurs/Create
-        [HttpPost]
+        [HttpPost("Auteurs/Create")]
         [ValidateAntiForgeryToken]
         // [Bind] restreindre les propriétés de modèle qui sont mises à jour lors d'une opération de liaison modèle
         // comme lors d'une soumission de formulaire.
@@ -93,7 +93,7 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Auteurs/Edit
-        [HttpPost]
+        [HttpPost("Auteurs/Edit/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nom ,Prenom")] Auteur auteur)
         {
@@ -144,7 +144,7 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: Auteurs/Delete
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("Auteurs/Delete/{id}"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

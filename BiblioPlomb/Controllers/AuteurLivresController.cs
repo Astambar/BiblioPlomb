@@ -55,7 +55,7 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: AuteurLivres/Create
-        [HttpPost]
+        [HttpPost("AuteurLivres/Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AuteurId,LivreId")] AuteurLivre auteurLivre)
         {
@@ -89,9 +89,7 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: AuteurLivres/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("AuteurLivres/Edit/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("AuteurId,LivreId")] AuteurLivre auteurLivre)
         {
@@ -146,7 +144,7 @@ namespace BiblioPlomb.Controllers
         }
 
         // POST: AuteurLivres/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("AuteurLivres/Delete/{id}"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
