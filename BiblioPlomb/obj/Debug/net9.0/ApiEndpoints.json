@@ -30,5 +30,786 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.AuteurLivresController",
+    "Method": "Create",
+    "RelativePath": "AuteurLivres/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "AuteurId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Auteur.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Auteur.Nom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Auteur.Prenom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Auteur.AuteurLivres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.AuteurLivre, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "LivreId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Titre",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Auteur",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Dispo",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Etat",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.ISBN",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.GenreId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.AuteurId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Genre.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Genre.Nom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Genre.Livres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.Livre, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.AuteurLivres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.AuteurLivre, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.AuteurLivresController",
+    "Method": "DeleteConfirmed",
+    "RelativePath": "AuteurLivres/Delete/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.AuteurLivresController",
+    "Method": "Edit",
+    "RelativePath": "AuteurLivres/Edit/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "AuteurId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Auteur.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Auteur.Nom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Auteur.Prenom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Auteur.AuteurLivres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.AuteurLivre, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "LivreId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Titre",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Auteur",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Dispo",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Etat",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.ISBN",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.GenreId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.AuteurId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Genre.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Genre.Nom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.Genre.Livres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.Livre, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livre.AuteurLivres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.AuteurLivre, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.AuteursController",
+    "Method": "Create",
+    "RelativePath": "Auteurs/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Nom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Prenom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AuteurLivres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.AuteurLivre, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "returnUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.AuteursController",
+    "Method": "DeleteConfirmed",
+    "RelativePath": "Auteurs/Delete/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.AuteursController",
+    "Method": "Edit",
+    "RelativePath": "Auteurs/Edit/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "Nom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Prenom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AuteurLivres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.AuteurLivre, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.EmpruntsController",
+    "Method": "Create",
+    "RelativePath": "Emprunts/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "EmpruntUtilisateurs",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.EmpruntRelation, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "EmpruntLivres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.EmpruntRelation, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "DateEmprunt",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "DateRetour",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.EmpruntsController",
+    "Method": "DeleteConfirmed",
+    "RelativePath": "Emprunts/Delete/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.EmpruntsController",
+    "Method": "Edit",
+    "RelativePath": "Emprunts/Edit/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "EmpruntUtilisateurs",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.EmpruntRelation, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "EmpruntLivres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.EmpruntRelation, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "DateEmprunt",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "DateRetour",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.GenresController",
+    "Method": "Create",
+    "RelativePath": "Genres/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Nom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.Livre, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.GenresController",
+    "Method": "DeleteConfirmed",
+    "RelativePath": "Genres/Delete/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.GenresController",
+    "Method": "Edit",
+    "RelativePath": "Genres/Edit/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "Nom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Livres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.Livre, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.LivresController",
+    "Method": "Create",
+    "RelativePath": "Livres/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Titre",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Auteur",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Dispo",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Etat",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ISBN",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "GenreId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "AuteurId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Genre.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Genre.Nom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Genre.Livres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.Livre, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AuteurLivres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.AuteurLivre, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.LivresController",
+    "Method": "DeleteConfirmed",
+    "RelativePath": "Livres/Delete/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.LivresController",
+    "Method": "Edit",
+    "RelativePath": "Livres/Edit/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "Titre",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Auteur",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Dispo",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Etat",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ISBN",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "GenreId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "AuteurId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Genre.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Genre.Nom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Genre.Livres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.Livre, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AuteurLivres",
+        "Type": "System.Collections.Generic.ICollection\u00601[[BiblioPlomb.Models.AuteurLivre, BiblioPlomb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.LivresController",
+    "Method": "Rechercher",
+    "RelativePath": "Livres/Rechercher",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "searchQuery",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.RoleController",
+    "Method": "Create",
+    "RelativePath": "Role/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.RoleController",
+    "Method": "Delete",
+    "RelativePath": "Role/Delete/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.UtilisateurController",
+    "Method": "Create",
+    "RelativePath": "Utilisateur/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "prenom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "motDePasse",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "selectedRoles",
+        "Type": "System.Int32[]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.UtilisateurController",
+    "Method": "Delete",
+    "RelativePath": "Utilisateur/Delete/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BiblioPlomb.Controllers.UtilisateurController",
+    "Method": "Edit",
+    "RelativePath": "Utilisateur/Edit/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "nom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "prenom",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "motdepasse",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "selectedRoles",
+        "Type": "System.Int32[]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

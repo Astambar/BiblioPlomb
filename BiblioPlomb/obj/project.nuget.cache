@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RHU/k6gK/W0=",
+  "dgSpecHash": "r+uqevxskug=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Utilisateur\\Desktop\\Programmation\\Hotfix\\BiblioPlomb\\BiblioPlomb\\BiblioPlomb.csproj",
+  "projectFilePath": "C:\\Environement_Programation\\repo_groupe\\SafeClone\\BiblioPlomb\\BiblioPlomb\\BiblioPlomb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Utilisateur\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Utilisateur\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
